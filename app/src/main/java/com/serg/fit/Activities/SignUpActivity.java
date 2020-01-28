@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.serg.fit.R;
 
 
-public class LogInActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_sign_in);
     }
 }

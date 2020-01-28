@@ -10,4 +10,7 @@
     <string name="reg_secondPassword">Повторите пароль</string>
     <string name="reg_submit">Зарегистрироваться</string>
     <string name="reg_log"><u>У меня уже есть аккаунт</u></string>
+    <string name="signin_text">Введите почту и пароль, \n чтобы войти</string>
+    <string name="signin_submit">Войти</string>
+    <string name="signin_up"><u>Создать аккаунт</u></string>
 </resources>
