@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Fit</string>
     <string name="welcomeText">Хорошей тренировки!</string>
+    <string name="reg_mainText">Регистрация спортсмена</string>
+    <string name="reg_name">Имя</string>
+    <string name="reg_secondName">Фамилия</string>
+    <string name="reg_email">E-mail</string>
+    <string name="reg_password">Пароль</string>
+    <string name="password_help">Не менее 6 символов</string>
+    <string name="reg_secondPassword">Повторите пароль</string>
+    <string name="reg_submit">Зарегистрироваться</string>
+    <string name="reg_log"><u>У меня уже есть аккаунт</u></string>
 </resources>
