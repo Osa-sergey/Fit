@@ -15,16 +15,24 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.serg.fit.R;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignInActivity extends AppCompatActivity {
 
-    private TextView signUpRef;
-    private CheckedTextView autoSave;
-    private SharedPreferences pref;
     private String userEmail;
     private String userPassword;
     private Boolean userAuto;
+
+    private CheckedTextView autoSave;
     private TextInputEditText email;
     private TextInputEditText password;
+
+    private TextView signUpRef;
+    private SharedPreferences pref;
     private MaterialButton btnSubmit;
     private Boolean internet;
     @Override
@@ -40,6 +48,7 @@ public class SignInActivity extends AppCompatActivity {
         password = (TextInputEditText) findViewById(R.id.signin_password);
         btnSubmit = (MaterialButton)  findViewById(R.id.signin_submit);
 
+        //переход между логином и регистрацией
         signUpRef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,29 +57,40 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
 
+        //переключение иконки чекбокса
         autoSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((CheckedTextView) v).toggle();
             }
         });
-
+        //проверка на наличие незакрытой сессии
         pref = getApplicationContext().getSharedPreferences("Pref",MODE_PRIVATE);
-        userEmail = pref.getString("authorizedEmail","");
-        if(!userEmail.equals("")) {
-            userPassword = pref.getString("authorizedPassword", "");
+        userPassword = pref.getString("authorizedPassword", "");
+
+        //если у нас есть авторизованный с флагом
+        if(!userPassword.equals("")&& pref.getBoolean("authorizedAuto", false)) {
+            userEmail = pref.getString("authorizedEmail","");
             userAuto = pref.getBoolean("authorizedAuto", false);
+            //быстрое подключение для авторизованного пользователя
             auth(userEmail,userPassword,userAuto);
-            //если запомненный пользователь не авторизовался, то внисываем его данные в форму и просим ввести пароль
+            //если запомненный пользователь не авторизовался, то вписываем его данные в форму и просим ввести пароль
             email.setText(userEmail);
             autoSave.setChecked(userAuto);
             password.setError(getResources().getString(R.string.err_wrongPassword));
+        }
+        //авторизованный без флага. Делаем возможность быстрого ввода пароля
+        if(!userPassword.equals("")&& !pref.getBoolean("authorizedAuto", false)){
+            userEmail = pref.getString("authorizedEmail","");
+            email.setText(userEmail);
+            autoSave.setChecked(false);
         }
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     boolean flag = false;
+                    //проверки на отсутствие ввода
                     if(email.getText().length()==0){
                         email.setError(getResources().getString(R.string.err_emptyString));
                         flag = true;
@@ -83,19 +103,144 @@ public class SignInActivity extends AppCompatActivity {
                     userEmail = email.getText().toString();
                     userPassword = password.getText().toString();
                     userAuto = autoSave.isChecked();
+                    //авторизация по кнопке
                     auth(userEmail,userPassword,userAuto);
+                    //для удобства заранее заполняем
+                    email.setText(userEmail);
+                    autoSave.setChecked(userAuto);
             }
         });
-
     }
 
     /**
      * Функция проверки авторизации если проверки пройдены, то перекидывает в основное меню
      * @param email емаил для проверки
-     * @param passwword пароль
+     * @param password пароль
      * @param autoAuth выставлена ли галочка о том, что пользователя нужно запомнить
      */
-    void auth(String email,String passwword,boolean autoAuth){
+    void auth(String email,String password,boolean autoAuth){
+        Intent mainIntent = new Intent(SignInActivity.this,MainActivity.class);
 
+        if(internet){
+            if(pref.getString("authorizedPassword","").equals("")){
+                //авторизованного пользователя нету
+                if(!checkEmail(email)){
+                    this.email.setError(getResources().getString(R.string.err_notCheckedEmail));
+                    return;
+                }
+                if(!checkPassword(password)){
+                    this.password.setError(getResources().getString(R.string.err_notCheckedPass));
+                    return;
+                }
+                password = md5(password);
+                if(serverAuthorization(email,password)){
+                    pref.edit().putString("authorizedEmail",email).
+                            putString("authorizedPassword",password).
+                            putBoolean("authorizedAuto",autoAuth).apply();
+                    Log.d("sp",email+" "+password+ " "+autoAuth);
+                    //TODO проверка что есть БД под него
+                    startActivity(mainIntent);
+                }else{
+                    this.password.setError(getResources().getString(R.string.err_authFail));
+                    this.email.setError(getResources().getString(R.string.err_authFail));
+                }
+            }else {
+                if(!autoAuth) {
+                    //проверка пароля, хеширование
+                    if(checkPassword(password)){
+                        password = md5(password);
+                    }else{
+                        //удаляем авторизованного пользователя
+                        pref.edit().putString("authorizedPassword","").apply();
+                        return;
+                    }
+                }
+                if(serverAuthorization(email,password)){
+                    pref.edit().putString("authorizedEmail",email).
+                            putString("authorizedPassword",password).
+                            putBoolean("authorizedAuto",autoAuth).apply();
+                    Log.d("sp",email+" "+password+ " "+autoAuth);
+                    startActivity(mainIntent);
+                }else {
+                    //авторизация не удалась
+                    //удаляем авторизованного пользователя
+                    this.password.setError(getResources().getString(R.string.err_authFail));
+                    this.email.setError(getResources().getString(R.string.err_authFail));
+                    pref.edit().putString("authorizedPassword","").apply();
+                }
+            }
+        }else {
+            if(!pref.getString("authorizedPassword","").equals("")){
+                if(autoAuth){
+                    //авторизованный пользователь есть, флажок есть
+                    //переходим к приложению
+                    startActivity(mainIntent);
+                }else{
+                    //авторизованный пользователь есть, но флажка нет
+                    //удаляем авторизованного пользователя
+                    pref.edit().putString("authorizedPassword","").apply();
+                    Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    /**
+     * Функция для проверки правильности формата почты
+     * @param email проверяемая почта
+     * @return true если подходит по формату, иначе false
+     */
+    private boolean checkEmail(String email) {
+        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        Matcher m = p.matcher(email);
+        return m.matches();
+    }
+
+    /**
+     * Функция для проверки правильности формата пароля
+     * @param password проверяем пароль
+     * @return true если подходит по формату, иначе false
+     */
+    private boolean checkPassword(String password) {
+        return password.length() >= 6 && password.length() <= 20;
+    }
+
+    /**
+     * Отправка запроса на сервер
+     * @param userEmail почта
+     * @param userPassword хэш пароля
+     * @return true если на сервере есть такое сочитание, иначе false
+     */
+    private boolean serverAuthorization(String userEmail, String userPassword) {
+        return false;
+    }
+
+    /**
+     * кастомная функция хэширования md5
+     * @param st хэшируемая строка
+     * @return хэш
+     */
+    private String md5(String st) {
+        MessageDigest messageDigest;
+        byte[] digest = new byte[0];
+
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.reset();
+            messageDigest.update(st.getBytes());
+            digest = messageDigest.digest();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        BigInteger bigInt = new BigInteger(1, digest);
+        String md5Hex = bigInt.toString(16);
+
+        while( md5Hex.length() < 32 ){
+            md5Hex = "0" + md5Hex;
+        }
+        return md5Hex;
     }
 }

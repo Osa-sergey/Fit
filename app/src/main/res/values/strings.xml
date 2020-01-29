@@ -16,4 +16,8 @@
     <string name="reg_autoSave">Запомнить меня</string>
     <string name="err_emptyString">Данное поле не может быть пустым</string>
     <string name="err_wrongPassword">Неверный пароль</string>
+    <string name="err_notCheckedPass">Неправильный формат пароля</string>
+    <string name="err_notCheckedEmail">Неправильный формат почты</string>
+    <string name="err_authFail">Неверный логин или пароль</string>
+    <string name="err_notConnection">Нет подключения</string>
 </resources>

@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".Activities.SignUpActivity"/>
         <activity android:name=".Activities.SignInActivity"/>
+        <activity android:name=".Activities.MainActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 
