@@ -13,4 +13,7 @@
     <string name="signin_text">Введите почту и пароль, \n чтобы войти</string>
     <string name="signin_submit">Войти</string>
     <string name="signin_up"><u>Создать аккаунт</u></string>
+    <string name="reg_autoSave">Запомнить меня</string>
+    <string name="err_emptyString">Данное поле не может быть пустым</string>
+    <string name="err_wrongPassword">Неверный пароль</string>
 </resources>

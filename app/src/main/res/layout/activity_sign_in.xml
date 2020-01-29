@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="15dp"
@@ -53,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/reg_password"
+            android:id="@+id/signin_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/reg_password"
@@ -61,32 +62,47 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <androidx.appcompat.widget.AppCompatCheckedTextView
+        android:id="@+id/reg_autoSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/reg_autoSave"
+        android:textSize="14sp"
+        android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+        android:gravity="end|center_vertical"
+        android:focusable="true"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="@+id/inputLayout1"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout1" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signin_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLayout1"
-        app:backgroundTint="@color/buttonTint"
-        app:cornerRadius="50dp"
+        android:layout_marginTop="88dp"
+        android:fontFamily="sans-serif"
         android:text="@string/signin_submit"
         android:textColor="@color/textWhite"
-        android:fontFamily="sans-serif"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        app:backgroundTint="@color/buttonTint"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout1" />
 
     <TextView
         android:id="@+id/reg_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
-        android:text="@string/signin_up"
-        android:fontFamily="sans-serif"
-        android:textSize="16sp"
-        android:textColor="@color/textBlack"
+        android:layout_marginTop="80dp"
         android:clickable="true"
         android:focusable="true"
+        android:fontFamily="sans-serif"
+        android:text="@string/signin_up"
+        android:textColor="@color/textBlack"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signin_submit" />
