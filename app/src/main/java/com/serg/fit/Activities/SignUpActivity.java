@@ -24,10 +24,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent signInIntent = new Intent(SignUpActivity.this,SignInActivity.class);
-                Bundle bundle = getIntent().getExtras();
-                signInIntent.putExtra("internet",bundle.getBoolean("internet"));
                 startActivity(signInIntent);
             }
         });
+
+
     }
 }
