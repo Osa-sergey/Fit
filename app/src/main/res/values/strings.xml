@@ -19,5 +19,5 @@
     <string name="err_notCheckedPass">Неправильный формат пароля</string>
     <string name="err_notCheckedEmail">Неправильный формат почты</string>
     <string name="err_authFail">Неверный логин или пароль</string>
-    <string name="err_notConnection">Нет подключения</string>
+    <string name="err_notConnection">Нет подключения к серверу</string>
 </resources>
