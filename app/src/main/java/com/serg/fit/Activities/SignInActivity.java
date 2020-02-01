@@ -21,6 +21,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import Enums.ServerResponse;
+
 public class SignInActivity extends AppCompatActivity {
 
     private String userEmail;
@@ -40,11 +42,11 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        signUpRef = (TextView) findViewById(R.id.reg_log);
-        autoSave = (CheckedTextView) findViewById(R.id.reg_autoSave);
-        email = (TextInputEditText) findViewById(R.id.signin_email);
-        password = (TextInputEditText) findViewById(R.id.signin_password);
-        btnSubmit = (MaterialButton)  findViewById(R.id.signin_submit);
+        signUpRef = (TextView) findViewById(R.id.log_reg);
+        autoSave = (CheckedTextView) findViewById(R.id.signIn_autoSave);
+        email = (TextInputEditText) findViewById(R.id.signIn_email);
+        password = (TextInputEditText) findViewById(R.id.signIn_password);
+        btnSubmit = (MaterialButton)  findViewById(R.id.signIn_submit);
 
         //переход между логином и регистрацией
         signUpRef.setOnClickListener(new View.OnClickListener() {
@@ -149,11 +151,11 @@ public class SignInActivity extends AppCompatActivity {
                         //TODO проверка что есть БД под него
                         startActivity(mainIntent);
                         break;
-                    case WRONGPASSOREMAIL:
+                    case WRONG_PASS_OR_EMAIL:
                         this.password.setError(getResources().getString(R.string.err_authFail));
                         this.email.setError(getResources().getString(R.string.err_authFail));
                         break;
-                    case NOCONNECTION:
+                    case NO_CONNECTION:
                         Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
                 }
             }else {
@@ -175,12 +177,12 @@ public class SignInActivity extends AppCompatActivity {
                         Log.d("sp",email+" "+password+ " "+autoAuth);
                         startActivity(mainIntent);
                         break;
-                    case WRONGPASSOREMAIL:
+                    case WRONG_PASS_OR_EMAIL:
                         this.password.setError(getResources().getString(R.string.err_authFail));
                         this.email.setError(getResources().getString(R.string.err_authFail));
                         pref.edit().putString("authorizedPassword","").apply();
                         break;
-                    case NOCONNECTION:
+                    case NO_CONNECTION:
                         Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
                 }
             }
@@ -307,8 +309,3 @@ public class SignInActivity extends AppCompatActivity {
     }
 }
 
-enum ServerResponse{
-    SUCCESSFULLY,
-    NOCONNECTION,
-    WRONGPASSOREMAIL
-}

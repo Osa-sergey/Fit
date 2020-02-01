@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_email"
+            android:id="@+id/signIn_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/reg_email"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/signin_password"
+            android:id="@+id/signIn_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/reg_password"
@@ -65,7 +65,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatCheckedTextView
-        android:id="@+id/reg_autoSave"
+        android:id="@+id/signIn_autoSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputLayout1" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/signin_submit"
+        android:id="@+id/signIn_submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputLayout1" />
 
     <TextView
-        android:id="@+id/reg_log"
+        android:id="@+id/log_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
@@ -107,5 +107,5 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_submit" />
+        app:layout_constraintTop_toBottomOf="@+id/signIn_submit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
