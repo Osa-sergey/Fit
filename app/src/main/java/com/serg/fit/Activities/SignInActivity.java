@@ -15,12 +15,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.serg.fit.R;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import Enums.ServerResponse;
 
 public class SignInActivity extends AppCompatActivity {
@@ -36,7 +30,7 @@ public class SignInActivity extends AppCompatActivity {
     private TextView signUpRef;
     private SharedPreferences pref;
     private MaterialButton btnSubmit;
-    private Boolean internet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,20 +120,18 @@ public class SignInActivity extends AppCompatActivity {
             !pref.getString("authorizedEmail","").equals(email)){
             pref.edit().putString("authorizedPassword","").apply();
         }
-        //TODO проверять наличие подключения но не сигнала
-        internet = checkInternetConnection();
-        if(internet){
+        if(SupportUtils.checkInternetConnection()){
             if(pref.getString("authorizedPassword","").equals("")){
                 //авторизованного пользователя нету
-                if(!checkEmail(email)){
+                if(!SupportUtils.checkEmail(email)){
                     this.email.setError(getResources().getString(R.string.err_notCheckedEmail));
                     return;
                 }
-                if(!checkPassword(password)){
+                if(!SupportUtils.checkPassword(password)){
                     this.password.setError(getResources().getString(R.string.err_notCheckedPass));
                     return;
                 }
-                password = md5(password);
+                password = SupportUtils.md5(password);
 
                 ServerResponse response = serverAuthorization(email,password);
                 switch (response){
@@ -161,12 +153,12 @@ public class SignInActivity extends AppCompatActivity {
             }else {
                 if(!autoAuth) {
                     //проверка пароля, хеширование
-                    if(!checkPassword(password)){
+                    if(!SupportUtils.checkPassword(password)){
                         this.password.setError(getResources().getString(R.string.err_notCheckedPass));
                         pref.edit().putString("authorizedPassword","").apply();
                         return;
                     }
-                    password = md5(password);
+                    password = SupportUtils.md5(password);
                 }
                 ServerResponse response = serverAuthorization(email,password);
                 switch (response){
@@ -195,12 +187,12 @@ public class SignInActivity extends AppCompatActivity {
                 }else{
                     //авторизованный пользователь есть, но флажка нет
                     //проверка пароля, хеширование
-                    if(!checkPassword(password)){
+                    if(!SupportUtils.checkPassword(password)){
                         this.password.setError(getResources().getString(R.string.err_notCheckedPass));
                         pref.edit().putString("authorizedPassword","").apply();
                         return;
                     }
-                    password = md5(password);
+                    password = SupportUtils.md5(password);
                     if(password.equals(pref.getString("authorizedPassword",""))){
                         startActivity(mainIntent);
                     }else{
@@ -215,11 +207,11 @@ public class SignInActivity extends AppCompatActivity {
                     this.email.setError(getResources().getString(R.string.err_authFail));
                     return;
                 }
-                if(!checkPassword(password)){
+                if(!SupportUtils.checkPassword(password)){
                     this.password.setError(getResources().getString(R.string.err_notCheckedPass));
                     return;
                 }
-                password = md5(password);
+                password = SupportUtils.md5(password);
                 if(password.equals(DBPassword)){
                     pref.edit().putString("authorizedEmail",email).
                             putString("authorizedPassword",password).
@@ -235,77 +227,26 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     /**
-     * Проверка на подключение либо к мобильной либо к стационароной сети
-     * @return true если есть подключение
-     */
-    private Boolean checkInternetConnection() {
-        return true;
-    }
-
-    /**
      * Делает завпрос к базе данных чтобы выяснить наличие данного пользователя в сохраненных
      * @param email email сохраненного пользователя
      * @return hash если пользователь есть в базе, null если нету
      */
+    //TODO проверяем наличие записи по уникальному полю email
     private String getPasswordFromDB(String email) {
         return null;
     }
 
     /**
-     * Функция для проверки правильности формата почты
-     * @param email проверяемая почта
-     * @return true если подходит по формату, иначе false
-     */
-    private boolean checkEmail(String email) {
-        Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher m = p.matcher(email);
-        return m.matches();
-    }
-
-    /**
-     * Функция для проверки правильности формата пароля
-     * @param password проверяем пароль
-     * @return true если подходит по формату, иначе false
-     */
-    private boolean checkPassword(String password) {
-        return password.length() >= 6 && password.length() <= 20;
-    }
-
-    /**
-     * Отправка запроса на сервер
+     * Отправка запроса авторизации на сервер
      * @param userEmail почта
      * @param userPassword хэш пароля
-     * @return true если на сервере есть такое сочитание, иначе false
+     * @return SUCCESSFULLY успешное выполнение авторизации,
+     *     NO_CONNECTION нет соединения с сервером,
+     *     WRONG_PASS_OR_EMAIL неверная комбинация email, password
      */
+    //TODO посылка запроса на авторизацию пользователя
     private ServerResponse serverAuthorization(String userEmail, String userPassword) {
         return ServerResponse.SUCCESSFULLY;
-    }
-
-    /**
-     * кастомная функция хэширования md5
-     * @param st хэшируемая строка
-     * @return хэш
-     */
-    private String md5(String st) {
-        MessageDigest messageDigest;
-        byte[] digest = new byte[0];
-
-        try {
-            messageDigest = MessageDigest.getInstance("MD5");
-            messageDigest.reset();
-            messageDigest.update(st.getBytes());
-            digest = messageDigest.digest();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        BigInteger bigInt = new BigInteger(1, digest);
-        String md5Hex = bigInt.toString(16);
-
-        while( md5Hex.length() < 32 ){
-            md5Hex = "0" + md5Hex;
-        }
-        return md5Hex;
     }
 }
 
