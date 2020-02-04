@@ -20,4 +20,11 @@
     <string name="err_notCheckedEmail">Неправильный формат почты</string>
     <string name="err_authFail">Неверный логин или пароль</string>
     <string name="err_notConnection">Нет подключения к серверу</string>
+    <string name="err_differentPass">Пароли не совпадают</string>
+    <string name="err_badName">В имени содержатся спец символы или пробелы</string>
+    <string name="err_notInternet">Нет подключения к сети</string>
+    <string name="ok">ОК</string>
+    <string name="hint_occupied">Пользователь с такой почтой уже существует.</string>
+    <string name="hint_success">Спасибо за регистрацию!  Вам на почту пришло письмо. Приложение будет доступно после прохождения по ссылке в этом письме.</string>
+    <string name="hint_rerun">Пожалуйста подтвердите почту</string>
 </resources>
