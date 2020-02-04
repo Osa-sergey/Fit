@@ -24,7 +24,7 @@ class SupportUtils {
      */
     static boolean checkEmail(String email) {
         Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-        Matcher m = p.matcher(email);
+        Matcher m = p.matcher(email.trim());
         return m.matches();
     }
 
@@ -43,9 +43,8 @@ class SupportUtils {
      * @return true, если содержатся только буквы
      */
     static boolean checkName(String name) {
-        //TODO написать регулярку
-        Pattern p = Pattern.compile("");
-        Matcher m = p.matcher(name);
+        Pattern p = Pattern.compile("[А-ЯЁ][а-яё]{1,19}|[A-Z][a-z]{1,19}");
+        Matcher m = p.matcher(name.trim());
         return m.matches();
     }
 

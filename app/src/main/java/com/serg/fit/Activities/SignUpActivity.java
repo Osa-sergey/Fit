@@ -3,9 +3,12 @@ package com.serg.fit.Activities;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -116,7 +119,9 @@ public class SignUpActivity extends AppCompatActivity {
             case SUCCESSFULLY:
                 dialogSuccess = new Dialog(this);
                 dialogSuccess.setCancelable(false);
+                dialogSuccess.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialogSuccess.setContentView(R.layout.dialog_success);
+                dialogSuccess.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 textView = (TextView) dialogSuccess.findViewById(R.id.text);
                 btnDialogSuccess = (MaterialButton) dialogSuccess.findViewById(R.id.btn_submit);
                 btnDialogSuccess.setOnClickListener(new View.OnClickListener() {
@@ -125,12 +130,14 @@ public class SignUpActivity extends AppCompatActivity {
                         ServerResponse serverResponse = checkEmailVerification(accountEmail);
                         switch (serverResponse){
                             case SUCCESSFULLY:
+                                //TODO вносить данные в DB
                                 SharedPreferences pref = getApplicationContext().getSharedPreferences("Pref",MODE_PRIVATE);
                                 pref.edit().putString("authorizedEmail",accountEmail).
                                         putString("authorizedPassword",accountPasswordMd5).
                                         putBoolean("authorizedAuto",false).apply();
                                 Log.d("sp",email+" "+password+ " "+false);
                                 startActivity(new Intent(SignUpActivity.this,MainActivity.class));
+                                break;
                             case NOT_CONFIRMED:
                                 textView.setText(getResources().getString(R.string.hint_rerun));
                                 break;
@@ -140,6 +147,7 @@ public class SignUpActivity extends AppCompatActivity {
                         }
                     }
                 });
+                dialogSuccess.show();
                 break;
             case NO_CONNECTION:
                 Toast.makeText(getApplicationContext(),R.string.err_notConnection,Toast.LENGTH_LONG).show();
@@ -147,7 +155,9 @@ public class SignUpActivity extends AppCompatActivity {
             case THIS_EMAIL_IS_OCCUPIED:
                 dialogOccup = new Dialog(this);
                 dialogOccup.setCancelable(false);
+                dialogOccup.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialogOccup.setContentView(R.layout.dialog_occupied);
+                dialogOccup.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 btnDialogOccup = (MaterialButton) dialogOccup.findViewById(R.id.btn_submit);
                 btnDialogOccup.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -156,6 +166,7 @@ public class SignUpActivity extends AppCompatActivity {
                         dialogOccup.dismiss();
                     }
                 });
+                dialogOccup.show();
         }
     }
 
