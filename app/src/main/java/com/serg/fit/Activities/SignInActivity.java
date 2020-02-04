@@ -149,6 +149,9 @@ public class SignInActivity extends AppCompatActivity {
                         break;
                     case NO_CONNECTION:
                         Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
+                        break;
+                    case NOT_CONFIRMED:
+                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.err_notConfirmed),Toast.LENGTH_LONG).show();
                 }
             }else {
                 if(!autoAuth) {
