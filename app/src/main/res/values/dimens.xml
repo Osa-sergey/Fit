@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="header_nav_view_height">135dp</dimen>
+    <dimen name="header_vertical_margin">16dp</dimen>
+    <dimen name="header_horizontal_margin">16dp</dimen>
+</resources>

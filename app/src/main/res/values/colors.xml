@@ -7,4 +7,10 @@
     <color name="boxStroke">#0C5E51</color>
     <color name="buttonTint">#008A5A</color>
     <color name="textWhite">#FFF</color>
+    <color name="colorBottomMenuBackground">#006A45</color>
+    <color name="colorBottomMenuBackgroundSelected">#fff</color>
+    <color name="headerNavViewBackground">#B8FFE6</color>
+    <color name="headerEditColor">#636161</color>
+    <color name="toolbarBackground">#fff</color>
+    <color name="hamburgerBlack">#000</color>
 </resources>

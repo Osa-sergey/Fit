@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/bottom_chats">
+
+    <fragment
+        android:id="@+id/bottom_diary"
+        android:name="Fragments.BottomMenu.DiaryFragment"
+        tools:layout="@layout/fragment_diary" />
+    <fragment
+        android:id="@+id/bottom_chats"
+        android:name="Fragments.BottomMenu.ChatsFragment"
+        tools:layout="@layout/fragment_chats"/>
+    <fragment
+        android:id="@+id/bottom_targets"
+        android:name="Fragments.BottomMenu.TargetsFragment"
+        tools:layout="@layout/fragment_targets"/>
+
+
+    <fragment
+        android:id="@+id/side_profile"
+        android:name="Fragments.SideMenu.ProfileFragment"
+        tools:layout="@layout/fragment_profile"/>
+    <fragment
+        android:id="@+id/side_trainers"
+        android:name="Fragments.SideMenu.TrainersFragment"
+        tools:layout="@layout/fragment_trainers"/>
+    <fragment
+        android:id="@+id/side_exercises"
+        android:name="Fragments.SideMenu.ExercisesFragment"
+        tools:layout="@layout/fragment_exercises"/>
+    <fragment
+        android:id="@+id/side_news"
+        android:name="Fragments.SideMenu.NewsFragment"
+        tools:layout="@layout/fragment_news"/>
+    <fragment
+        android:id="@+id/side_help"
+        android:name="Fragments.SideMenu.HelpFragment"
+        tools:layout="@layout/fragment_help"/>
+    <fragment
+        android:id="@+id/side_settings"
+        android:name="Fragments.SideMenu.SettingsFragment"
+        tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/side_contacts"
+        android:name="Fragments.SideMenu.ContactsFragment"
+        tools:layout="@layout/fragment_contacts"/>
+</navigation>
