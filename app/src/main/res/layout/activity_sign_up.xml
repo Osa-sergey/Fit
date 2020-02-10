@@ -147,7 +147,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputLayout5"
         app:backgroundTint="@color/buttonTint"
-        app:cornerRadius="50dp"
+        app:cornerRadius="16dp"
         android:text="@string/reg_submit"
         android:textColor="@color/textWhite"
         android:fontFamily="sans-serif"
