@@ -2,11 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/bottom_diary"
-        android:title="@string/bottom_diary"/>
+        android:title="@string/bottom_diary"
+        android:icon="@drawable/ic_bm_diary"/>
     <item
         android:id="@+id/bottom_chats"
-        android:title="@string/bottom_chats"/>
+        android:title="@string/bottom_chats"
+        android:icon="@drawable/ic_bm_chats"/>
     <item
         android:id="@+id/bottom_targets"
-        android:title="@string/bottom_targets"/>
+        android:title="@string/bottom_targets"
+        android:icon="@drawable/ic_bm_programs"/>
 </menu>
