@@ -25,6 +25,7 @@
     <string name="err_notInternet">Нет подключения к сети</string>
     <string name="ok">ОК</string>
     <string name="hint_occupied">Пользователь с такой почтой уже существует.</string>
+    <string name="hint_contacts">Спасибо за Ваш вопрос! Ответ будет прислан Вам на почту.</string>
     <string name="hint_success">Спасибо за регистрацию!  Вам на почту пришло письмо. Приложение будет доступно после прохождения по ссылке в этом письме.</string>
     <string name="hint_rerun">Пожалуйста подтвердите почту</string>
     <string name="err_notConfirmed">Подтвердите Вашу почту</string>
@@ -42,4 +43,31 @@
     <string name="bottom_diary">Дневник</string>
     <string name="icon">icon</string>
     <string name="header_edit">Редактировать</string>
+    <string name="helpText">Популярные вопросы</string>
+    <string name="exercise_complexity">Сложность</string>
+    <string name="trainer_reviews">Отзывы:</string>
+
+    <string name="profile_weight">Вес</string>
+    <string name="profile_power">Телосложение</string>
+    <string name="profile_experience">Опыт</string>
+    <string name="profile_age">Возраст</string>
+    <string name="profile_email">E-mail</string>
+    <string name="profile_phone">Телефон</string>
+    <string name="profile_med">Медицинские противопоказания</string>
+
+    <string name="fragment_contacts">Контакты</string>
+    <string name="contacts_them">Введите тему вопроса…</string>
+    <string name="contacts_send_button">Отправить</string>
+    <string name="contacts_text">Или напишите нам на:\n<b>sportsapp@app.ru</b></string>
+
+    <string name="settings_switch">Включить уведомления</string>
+    <string name="settings_sound">Звук</string>
+    <string name="settings_data">Кто видит мои скрытые данные</string>
+    <string name="settings_select_sound">Выбрать сигнал</string>
+    <string name="read_more">Читать далее…</string>
+    <string name="copy">Скопировать ссылку</string>
+    <string name="importance">Важность</string>
+    <string name="performed">Выполнено на:</string>
+    <string name="training">Тренировки по плану:</string>
+    <string name="spent">Затраченное время:</string>
 </resources>

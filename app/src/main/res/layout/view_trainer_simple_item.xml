@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="115dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp">
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_person_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/trainer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif"
+            android:text="Антон Дмитриев"
+            android:textColor="@color/textBlack"
+            android:textSize="19sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/avatar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@string/trainer_reviews"
+            android:textColor="#4F4F4F"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/avatar"
+            app:layout_constraintStart_toStartOf="@+id/trainer_name" />
+
+
+        <ImageView
+            android:id="@+id/star1"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="4dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/reviews"
+            app:layout_constraintStart_toEndOf="@+id/reviews"
+            app:layout_constraintTop_toTopOf="@+id/reviews" />
+
+        <ImageView
+            android:id="@+id/star2"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/star1"
+            app:layout_constraintStart_toEndOf="@+id/star1"
+            app:layout_constraintTop_toTopOf="@+id/star1" />
+
+        <ImageView
+            android:id="@+id/star3"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/star2"
+            app:layout_constraintStart_toEndOf="@+id/star2"
+            app:layout_constraintTop_toTopOf="@+id/star2" />
+
+        <ImageView
+            android:id="@+id/star4"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/star3"
+            app:layout_constraintStart_toEndOf="@+id/star3"
+            app:layout_constraintTop_toTopOf="@+id/star3" />
+
+        <ImageView
+            android:id="@+id/star5"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@+id/star4"
+            app:layout_constraintStart_toEndOf="@+id/star4"
+            app:layout_constraintTop_toTopOf="@+id/star4" />
+
+        <TextView
+            android:id="@+id/reviews_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="sans-serif"
+            android:text="13"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/star5"
+            app:layout_constraintStart_toEndOf="@+id/star5"
+            app:layout_constraintTop_toTopOf="@+id/star5" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/rating_image"
+            android:layout_width="24dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="112dp"
+            android:src="@drawable/ic_rating_up"
+            app:layout_constraintBottom_toBottomOf="@+id/trainer_name"
+            app:layout_constraintStart_toEndOf="@+id/trainer_name"
+            app:layout_constraintTop_toTopOf="@+id/trainer_name"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <TextView
+            android:id="@+id/rating_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif"
+            android:text="1.1"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rating_image"
+            app:layout_constraintTop_toTopOf="@+id/rating_image" />
+
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="sans-serif"
+            android:maxLines="2"
+            android:text="Сделаю вас стройным и сильным!"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reviews" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

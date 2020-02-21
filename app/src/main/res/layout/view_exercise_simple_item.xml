@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="164dp"
+    android:layout_height="200dp"
+    app:cardCornerRadius="15dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/exercise_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            />
+
+        <TextView
+            android:id="@+id/exercise_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Отжимания"
+            android:textSize="14sp"
+            android:textColor="@color/textBlack"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="4dp"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/exercise_complexity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="9dp"
+                android:fontFamily="sans-serif"
+                android:text="@string/exercise_complexity"
+                android:textColor="@color/textBlack"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_star"
+                app:layout_constraintBottom_toBottomOf="@+id/exercise_complexity"
+                app:layout_constraintStart_toEndOf="@+id/exercise_complexity"
+                app:layout_constraintTop_toTopOf="@+id/exercise_complexity" />
+
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star"
+                app:layout_constraintBottom_toBottomOf="@+id/star1"
+                app:layout_constraintStart_toEndOf="@+id/star1"
+                app:layout_constraintTop_toTopOf="@+id/star1" />
+
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star"
+                app:layout_constraintBottom_toBottomOf="@+id/star2"
+                app:layout_constraintStart_toEndOf="@+id/star2"
+                app:layout_constraintTop_toTopOf="@+id/star2" />
+
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star"
+                app:layout_constraintBottom_toBottomOf="@+id/star3"
+                app:layout_constraintStart_toEndOf="@+id/star3"
+                app:layout_constraintTop_toTopOf="@+id/star3" />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star"
+                app:layout_constraintBottom_toBottomOf="@+id/star4"
+                app:layout_constraintStart_toEndOf="@+id/star4"
+                app:layout_constraintTop_toTopOf="@+id/star4" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

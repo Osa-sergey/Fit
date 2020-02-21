@@ -13,4 +13,6 @@
     <color name="headerEditColor">#636161</color>
     <color name="toolbarBackground">#fff</color>
     <color name="hamburgerBlack">#000</color>
+    <color name="targetBackground">#E8E6E6</color>
+    <color name="colorProgressBarBackground">#fff</color>
 </resources>
