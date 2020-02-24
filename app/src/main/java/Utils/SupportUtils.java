@@ -1,4 +1,4 @@
-package com.serg.fit.Activities;
+package Utils;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -6,14 +6,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class SupportUtils {
+public class SupportUtils {
 
     /**
      * Проверка на подключение либо к мобильной либо к стационароной сети
      * @return true если есть подключение
      */
     //TODO проверять наличие подключения но не сигнала
-    static Boolean checkInternetConnection() {
+    public static Boolean checkInternetConnection() {
         return true;
     }
 
@@ -22,7 +22,7 @@ class SupportUtils {
      * @param email проверяемая почта
      * @return true если подходит по формату, иначе false
      */
-    static boolean checkEmail(String email) {
+    public static boolean checkEmail(String email) {
         Pattern p = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
         Matcher m = p.matcher(email.trim());
         return m.matches();
@@ -33,7 +33,7 @@ class SupportUtils {
      * @param password проверяем пароль
      * @return true если подходит по формату, иначе false
      */
-    static boolean checkPassword(String password) {
+    public static boolean checkPassword(String password) {
         return password.length() >= 6 && password.length() <= 20;
     }
 
@@ -42,7 +42,7 @@ class SupportUtils {
      * @param name проверяемая строка
      * @return true, если содержатся только буквы
      */
-    static boolean checkName(String name) {
+    public static boolean checkName(String name) {
         Pattern p = Pattern.compile("[А-ЯЁ][а-яё]{1,19}|[A-Z][a-z]{1,19}");
         Matcher m = p.matcher(name.trim());
         return m.matches();
@@ -53,7 +53,7 @@ class SupportUtils {
      * @param st хэшируемая строка
      * @return хэш
      */
-    static String md5(String st) {
+    public static String md5(String st) {
         MessageDigest messageDigest;
         byte[] digest = new byte[0];
 

@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.serg.fit.R;
 
 import Enums.ServerResponse;
+import Utils.SupportUtils;
 
 
 public class SignUpActivity extends AppCompatActivity {
