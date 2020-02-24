@@ -15,4 +15,6 @@
     <color name="hamburgerBlack">#000</color>
     <color name="targetBackground">#E8E6E6</color>
     <color name="colorProgressBarBackground">#fff</color>
+    <color name="tabsChecked">#fff</color>
+    <color name="tabsNoChecked">#D8D4D4</color>
 </resources>
