@@ -99,4 +99,8 @@
     <string name="material_calendar_negative_button">Отмена</string>
 
     <string name="ask">Задайте вопрос…</string>
+    <string name="all_users">Все пользователи</string>
+    <string name="only_I">Только я</string>
+    <string name="selected">Выборочно</string>
+    <string name="select_users">Выберите пользователей</string>
 </resources>

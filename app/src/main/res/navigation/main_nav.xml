@@ -40,12 +40,33 @@
         android:name="Fragments.SideMenu.HelpFragment"
         tools:layout="@layout/fragment_help"/>
     <fragment
-        android:id="@+id/side_settings"
-        android:name="Fragments.SideMenu.SettingsFragment"
-        tools:layout="@layout/fragment_settings"/>
-    <fragment
         android:id="@+id/side_contacts"
         android:name="Fragments.SideMenu.ContactsFragment"
         tools:layout="@layout/fragment_contacts"
         android:label="@string/fragment_contacts"/>
+
+    <fragment
+        android:id="@+id/side_settings"
+        android:name="Fragments.SideMenu.SettingsFragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_side_settings_to_settingsTypeFragment"
+            app:destination="@id/settingsTypeFragment"
+            app:popUpTo="@+id/side_settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsTypeFragment"
+        android:name="Fragments.ForSettings.SettingsTypeFragment"
+        android:label="fragment_settings_type"
+        tools:layout="@layout/fragment_settings_type" >
+        <action
+            android:id="@+id/action_settingsTypeFragment_to_settingsListFragment"
+            app:destination="@id/settingsListFragment"
+            app:popUpTo="@+id/settingsTypeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsListFragment"
+        android:name="Fragments.ForSettings.SettingsListFragment"
+        android:label="fragment_settings_list"
+        tools:layout="@layout/fragment_settings_list" />
 </navigation>
