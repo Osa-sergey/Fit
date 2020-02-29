@@ -79,4 +79,9 @@ public class SupportUtils {
         //TODO написать для чата перевод в дату или день
         return "";
     }
+
+    public static String getSpentTime(long spentTime) {
+        //TODO написать
+        return "";
+    }
 }
