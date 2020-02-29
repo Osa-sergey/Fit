@@ -42,15 +42,18 @@
         android:id="@+id/select_sound"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
+        android:layout_marginStart="132dp"
         android:clickable="true"
         android:focusable="true"
         android:text="@string/settings_select_sound"
         android:textColor="#808080"
         android:textSize="17sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView3"
+        app:layout_constraintEnd_toEndOf="@+id/select_switch"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
-        app:layout_constraintTop_toTopOf="@+id/textView3" />
+        app:layout_constraintTop_toTopOf="@+id/textView3"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView4"
