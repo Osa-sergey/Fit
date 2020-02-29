@@ -74,4 +74,9 @@ public class SupportUtils {
         }
         return md5Hex;
     }
+
+    public static String getDateTimeForChat(long date) {
+        //TODO написать для чата перевод в дату или день
+        return "";
+    }
 }
