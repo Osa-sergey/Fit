@@ -1,5 +1,6 @@
 package Adapters;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,13 @@ import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
 import com.devzone.fillprogresslayout.FillProgressLayout;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.serg.fit.R;
 
 import java.util.ArrayList;
@@ -22,6 +30,7 @@ import java.util.Collection;
 import java.util.List;
 
 import Pojo.TargetItem;
+import Utils.MyValueFormatter;
 
 public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetViewHolder> {
 
@@ -61,6 +70,7 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
         private TextView trainings;
         private TextView spent;
         private CardView cardView;
+        private BarChart barChart;
 
         public TargetViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -80,6 +90,7 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
             expanded = (ConstraintLayout) itemView.findViewById(R.id.expanded);
             trainings = (TextView) itemView.findViewById(R.id.trainings);
             spent = (TextView) itemView.findViewById(R.id.spent);
+            barChart = (BarChart) itemView.findViewById(R.id.barChart);
         }
 
         public void bind(TargetItem targetItem, final int position) {
@@ -116,6 +127,47 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
             percentage.setText(targetItem.getProgressStr());
             trainings.setText(targetItem.getTrainings());
             spent.setText(targetItem.getSpentTime());
+
+            barChart.setDrawBarShadow(false);
+            barChart.setDrawValueAboveBar(false);
+            barChart.setPinchZoom(false);
+            Description description = new Description();
+            description.setEnabled(false);
+            barChart.setDescription(description);
+
+            ArrayList<BarEntry> entries = new ArrayList<>();
+            for (int i = 0; i <12 ; i++) {
+                entries.add(new BarEntry((float) i,40f));
+            }
+
+            ArrayList<BarEntry> entries1 = new ArrayList<>();
+
+
+            BarDataSet set = new BarDataSet(entries,"Сделано");
+            set.setDrawValues(false);
+            set.setColor(Color.rgb(0, 106, 69));
+
+            BarDataSet set1 = new BarDataSet(entries1,"Задано");
+            set1.setDrawValues(false);
+            set1.setColor(Color.rgb(196,196,196));
+
+            List<IBarDataSet> sets = new ArrayList<>();
+            sets.add(set1);
+            sets.add(set);
+            BarData barData = new BarData(sets);
+            barData.setBarWidth(0.90f);
+            barChart.setData(barData);
+
+            //оси
+            String[] dates = new String[] {"1","2","3","4","5","6","7","8","9","10","11","12"};
+            XAxis xAxis = barChart.getXAxis();
+            xAxis.setValueFormatter(new MyValueFormatter(dates));
+            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+            xAxis.setCenterAxisLabels(false);
+            xAxis.setAxisMinimum(-0.5f);
+            xAxis.setGranularity(1);
+            xAxis.setDrawGridLines(false);
+            barChart.getAxisRight().setEnabled(false);
         }
     }
 }
