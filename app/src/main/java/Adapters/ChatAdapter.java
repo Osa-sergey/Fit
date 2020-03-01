@@ -17,6 +17,7 @@ import java.util.List;
 
 import Pojo.ChatItem;
 import Utils.SupportUtils;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder> {
 
@@ -47,7 +48,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
     public class ChatViewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView avatar;
+        private CircleImageView avatar;
         private TextView fullName;
         private ImageView selected;
         private TextView lastMsg;
@@ -55,7 +56,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
 
         public ChatViewHolder(@NonNull View itemView) {
             super(itemView);
-            avatar = (ImageView) itemView.findViewById(R.id.avatar);
+            avatar = (CircleImageView) itemView.findViewById(R.id.avatar);
             fullName = (TextView) itemView.findViewById(R.id.fullName);
             selected = (ImageView) itemView.findViewById(R.id.selected);
             lastMsg = (TextView) itemView.findViewById(R.id.lastMsg);

@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ import java.util.Collection;
 import java.util.List;
 
 import Pojo.SettingsUserItem;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.SettingsViewHolder> {
 
@@ -52,13 +52,13 @@ public class SettingsAdapter extends RecyclerView.Adapter<SettingsAdapter.Settin
 
     public class SettingsViewHolder extends RecyclerView.ViewHolder{
 
-       private ImageView avatar;
+       private CircleImageView avatar;
        private TextView username;
        private CheckBox state;
 
        public SettingsViewHolder(@NonNull View itemView) {
            super(itemView);
-           avatar = (ImageView) itemView.findViewById(R.id.avatar);
+           avatar = (CircleImageView) itemView.findViewById(R.id.avatar);
            username = (TextView) itemView.findViewById(R.id.username);
            state = (CheckBox) itemView.findViewById(R.id.state);
        }
