@@ -19,4 +19,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/view_target_simple_item" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_btn"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="23dp"
+        android:foregroundGravity="center_vertical|center_horizontal"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@null"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
