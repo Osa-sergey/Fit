@@ -7,8 +7,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.AutoTransition;
+import androidx.transition.TransitionManager;
 
 import com.devzone.fillprogresslayout.FillProgressLayout;
 import com.serg.fit.R;
@@ -57,6 +60,7 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
         private ConstraintLayout expanded;
         private TextView trainings;
         private TextView spent;
+        private CardView cardView;
 
         public TargetViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +72,7 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
             star4 = (ImageView) itemView.findViewById(R.id.star4);
             star5 = (ImageView) itemView.findViewById(R.id.star5);
             stars = new ArrayList<>();
+            cardView = (CardView) itemView.findViewById(R.id.main_card);
             stars.addAll(Arrays.asList(star1,star2,star3,star4,star5));
             progressBar = (FillProgressLayout) itemView.findViewById(R.id.progressBar);
             percentage = (TextView) itemView.findViewById(R.id.percentage);
@@ -84,22 +89,26 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
                 else stars.get(i).setImageResource(R.drawable.ic_star);
             }
             if (targetItem.isExpand()){
-                expand.setImageResource(R.drawable.ic_expand_less);
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                 expanded.setVisibility(View.VISIBLE);
+                expand.setImageResource(R.drawable.ic_expand_less);
             }else {
-                expand.setImageResource(R.drawable.ic_expand_more);
+                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                 expanded.setVisibility(View.GONE);
+                expand.setImageResource(R.drawable.ic_expand_more);
             }
             expand.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     targetItemList.get(position).setExpand(!targetItemList.get(position).isExpand());
                     if (targetItemList.get(position).isExpand()){
-                        expand.setImageResource(R.drawable.ic_expand_less);
+                        TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                         expanded.setVisibility(View.VISIBLE);
+                        expand.setImageResource(R.drawable.ic_expand_less);
                     }else {
-                        expand.setImageResource(R.drawable.ic_expand_more);
+                        TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                         expanded.setVisibility(View.GONE);
+                        expand.setImageResource(R.drawable.ic_expand_more);
                     }
                 }
             });
