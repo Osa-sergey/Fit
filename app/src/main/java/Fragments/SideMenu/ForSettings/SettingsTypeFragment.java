@@ -1,4 +1,4 @@
-package Fragments.ForSettings;
+package Fragments.SideMenu.ForSettings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package Fragments.ForSettings;
+package Fragments.SideMenu.ForSettings;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
