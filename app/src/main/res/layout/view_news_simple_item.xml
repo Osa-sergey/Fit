@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="5dp"
@@ -28,7 +29,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/options"
                 android:layout_width="20dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
@@ -64,12 +65,15 @@
                 android:textColor="#3C3C3C"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/text"
                 app:layout_constraintTop_toBottomOf="@+id/text"
                 app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
                 android:layout_marginStart="20dp"
