@@ -100,11 +100,9 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
                 else stars.get(i).setImageResource(R.drawable.ic_star);
             }
             if (targetItem.isExpand()){
-                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                 expanded.setVisibility(View.VISIBLE);
                 expand.setImageResource(R.drawable.ic_expand_less);
             }else {
-                TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                 expanded.setVisibility(View.GONE);
                 expand.setImageResource(R.drawable.ic_expand_more);
             }
@@ -117,7 +115,6 @@ public class TargetAdapter extends RecyclerView.Adapter<TargetAdapter.TargetView
                         expanded.setVisibility(View.VISIBLE);
                         expand.setImageResource(R.drawable.ic_expand_less);
                     }else {
-                        TransitionManager.beginDelayedTransition(cardView, new AutoTransition());
                         expanded.setVisibility(View.GONE);
                         expand.setImageResource(R.drawable.ic_expand_more);
                     }
