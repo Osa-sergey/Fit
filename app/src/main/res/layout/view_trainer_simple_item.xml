@@ -52,11 +52,12 @@
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="160dp"
             android:src="@drawable/ic_star"
             app:layout_constraintBottom_toBottomOf="@+id/reviews"
             app:layout_constraintStart_toEndOf="@+id/reviews"
-            app:layout_constraintTop_toTopOf="@+id/reviews" />
+            app:layout_constraintTop_toTopOf="@+id/reviews"
+            app:layout_constraintVertical_bias="0.571" />
 
         <ImageView
             android:id="@+id/star2"
@@ -102,16 +103,19 @@
             android:id="@+id/reviews_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="10dp"
             android:fontFamily="sans-serif"
             android:text="13"
             android:textColor="@color/textBlack"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/star5"
+            app:layout_constraintEnd_toEndOf="@+id/rating_number"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/star5"
-            app:layout_constraintTop_toTopOf="@+id/star5" />
+            app:layout_constraintTop_toTopOf="@+id/star5"
+            app:layout_constraintVertical_bias="0.5" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/rating_image"
             android:layout_width="24dp"
             android:layout_height="16dp"
