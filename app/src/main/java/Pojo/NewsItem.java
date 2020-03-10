@@ -6,6 +6,7 @@ public class NewsItem {
     private String title;
     private String text;
     private String imgUrl;
+
     private boolean expanded;
 
     public NewsItem(String title, String text, String imgUrl) {
