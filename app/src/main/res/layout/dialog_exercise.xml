@@ -97,14 +97,65 @@
             app:layout_constraintStart_toEndOf="@+id/star4"
             app:layout_constraintTop_toTopOf="@+id/star4" />
 
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/star4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/star5"
+            app:layout_constraintTop_toTopOf="@+id/star5" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chip1" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/chip2"
+            app:layout_constraintStart_toEndOf="@+id/chip2"
+            app:layout_constraintTop_toTopOf="@+id/chip2" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/chip3"
+            app:layout_constraintStart_toEndOf="@+id/chip3"
+            app:layout_constraintTop_toTopOf="@+id/chip3" />
+
         <TextView
             android:id="@+id/main_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="37dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="top"
             app:layout_constraintBottom_toTopOf="@+id/btn_submit"
-            app:layout_constraintTop_toBottomOf="@+id/exercise_complexity" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chip2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_submit"
