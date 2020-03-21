@@ -35,7 +35,7 @@ public class SettingsFragment extends Fragment {
         notifSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+            //TODO дописать
             }
         });
         selectSound.setOnClickListener(new View.OnClickListener() {

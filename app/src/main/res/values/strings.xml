@@ -105,4 +105,6 @@
     <string name="select_users">Выберите пользователей</string>
     <string name="selected_chat">Выбранный чат</string>
     <string name="copy_link">Поделиться</string>
+    <string name="weight">кг</string>
+
 </resources>

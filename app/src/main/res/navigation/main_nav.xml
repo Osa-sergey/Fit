@@ -22,7 +22,12 @@
     <fragment
         android:id="@+id/side_profile"
         android:name="Fragments.SideMenu.ForProfile.ProfileFragment"
-        tools:layout="@layout/fragment_profile"/>
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_side_profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:popUpTo="@id/side_profile"/>
+    </fragment>
     <fragment
         android:id="@+id/side_trainers"
         android:name="Fragments.SideMenu.TrainersFragment"
@@ -69,4 +74,11 @@
         android:name="Fragments.SideMenu.ForSettings.SettingsListFragment"
         android:label="fragment_settings_list"
         tools:layout="@layout/fragment_settings_list" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="Fragments.SideMenu.ForProfile.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile">
+
+    </fragment>
 </navigation>
