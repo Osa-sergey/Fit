@@ -17,24 +17,22 @@ import com.serg.fit.R;
 import com.serg.fit.databinding.FragmentProfileBinding;
 
 import Pojo.Profile;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
-    private CircleImageView avatar;
-    private TextView name, edit, weight, power, experience, age, email, phone, med;
     private Toolbar toolbar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Profile profile = new Profile("Овчинников Сергей");
-        final FragmentProfileBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile,null,false);
+        FragmentProfileBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile,null,false);
         View view = binding.getRoot();
+        final TextView edit = binding.edit;
         binding.setProfile(profile);
-        binding.edit.setOnClickListener(new View.OnClickListener() {
+        edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(binding.edit).navigate(R.id.action_side_profile_to_editProfileFragment);
+                Navigation.findNavController(edit).navigate(R.id.action_side_profile_to_editProfileFragment);
             }
         });
 

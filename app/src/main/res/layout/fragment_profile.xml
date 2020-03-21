@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
             name="profile"
@@ -9,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="45dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -27,7 +27,7 @@
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     android:layout_marginStart="35dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginTop="20dp"
                     android:src="@drawable/ic_person_icon_orange"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -36,8 +36,8 @@
                     android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="32dp"
                     android:fontFamily="sans-serif"
                     android:text="@{profile.fullName}"
                     android:textColor="@color/textBlack"
@@ -62,7 +62,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="47dp"
+                    android:layout_marginTop="60dp"
                     android:src="@drawable/ic_weight"
                     app:layout_constraintEnd_toEndOf="@+id/avatar"
                     app:layout_constraintStart_toStartOf="@+id/avatar"
@@ -133,7 +133,7 @@
                     android:id="@+id/weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif"
                     android:text='@{String.valueOf(profile.weight) + " " + @string/weight}'
                     android:textColor="@color/textWhite"
@@ -147,7 +147,7 @@
                     android:id="@+id/power"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif"
                     android:text="@{profile.power}"
                     android:textColor="@color/textWhite"
@@ -160,7 +160,7 @@
                     android:id="@+id/experience"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="sans-serif"
                     android:text="3 года"
                     android:textColor="@color/textWhite"
