@@ -23,6 +23,7 @@
     <string name="err_differentPass">Пароли не совпадают</string>
     <string name="err_badName">В имени содержатся спец символы или пробелы</string>
     <string name="err_notInternet">Нет подключения к сети</string>
+    <string name="err_emptyReview">Пожалуйста оставьте текстовый отзыв</string>
     <string name="ok">ОК</string>
     <string name="hint_occupied">Пользователь с такой почтой уже существует.</string>
     <string name="hint_contacts">Спасибо за Ваш вопрос! Ответ будет прислан Вам на почту.</string>
@@ -48,12 +49,24 @@
     <string name="trainer_reviews">Отзывы:</string>
 
     <string name="profile_weight">Вес</string>
+    <string name="profile_weight_measure">кг</string>
     <string name="profile_power">Телосложение</string>
     <string name="profile_experience">Опыт</string>
     <string name="profile_age">Возраст</string>
     <string name="profile_email">E-mail</string>
     <string name="profile_phone">Телефон</string>
     <string name="profile_med">Медицинские противопоказания</string>
+    <string name="profile_about">О себе</string>
+    
+    <string name="trainer_profile_experience">Опыт</string>
+    <string name="trainer_profile_rating">Рейтинг</string>
+    <string name="trainer_profile_review">Отзывы</string>
+    <string name="trainer_profile_age">Возраст</string>
+    <string name="trainer_profile_email">E-mail</string>
+    <string name="trainer_profile_phone">Телефон</string>
+    <string name="trainer_profile_to_write">Написать</string>
+    <string name="trainer_profile_to_write_review">Оставить отзыв</string>
+    <string name="trainer_profile_about">О себе</string>
 
     <string name="fragment_contacts">Контакты</string>
     <string name="contacts_them">Введите тему вопроса…</string>
@@ -65,7 +78,6 @@
     <string name="settings_data">Кто видит мои скрытые данные</string>
     <string name="settings_select_sound">Выбрать сигнал</string>
     <string name="read_more">Читать далее…</string>
-    <string name="copy">Скопировать ссылку</string>
     <string name="importance">Важность</string>
     <string name="performed">Выполнено на:</string>
     <string name="training">Тренировки по плану:</string>
@@ -105,6 +117,25 @@
     <string name="select_users">Выберите пользователей</string>
     <string name="selected_chat">Выбранный чат</string>
     <string name="copy_link">Поделиться</string>
-    <string name="weight">кг</string>
 
+    <array name="year_type">
+        <item>лет</item>
+        <item>год</item>
+        <item>года</item>
+    </array>
+
+    <string name="add_review">Введите ваш отзыв…</string>
+    <string name="editName">Введите имя</string>
+    <string name="editSecondName">Введите фамилию</string>
+    <string name="profile_gender">Пол</string>
+    <string name="profile_birthday">Дата рождения</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+
+    <string-array name="power_type">
+        <item>Не выбрано</item>
+        <item>Эктоморф</item>
+        <item>Мезоморф</item>
+        <item>Эндоморф</item>
+    </string-array>
 </resources>

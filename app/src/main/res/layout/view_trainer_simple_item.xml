@@ -6,7 +6,7 @@
     android:layout_height="115dp"
     android:layout_marginStart="15dp"
     android:layout_marginEnd="15dp">
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -46,91 +46,79 @@
             app:layout_constraintBottom_toBottomOf="@+id/avatar"
             app:layout_constraintStart_toStartOf="@+id/trainer_name" />
 
-
-        <ImageView
-            android:id="@+id/star1"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="160dp"
-            android:src="@drawable/ic_star"
+        <LinearLayout
+            android:id="@+id/stars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="@+id/reviews"
-            app:layout_constraintStart_toEndOf="@+id/reviews"
-            app:layout_constraintTop_toTopOf="@+id/reviews"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintEnd_toEndOf="@+id/rating_number"
+            app:layout_constraintTop_toTopOf="@+id/reviews">
 
-        <ImageView
-            android:id="@+id/star2"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star1"
-            app:layout_constraintStart_toEndOf="@+id/star1"
-            app:layout_constraintTop_toTopOf="@+id/star1" />
+            <ImageView
+                android:id="@+id/star1"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star" />
 
-        <ImageView
-            android:id="@+id/star3"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star2"
-            app:layout_constraintStart_toEndOf="@+id/star2"
-            app:layout_constraintTop_toTopOf="@+id/star2" />
+            <ImageView
+                android:id="@+id/star2"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star" />
 
-        <ImageView
-            android:id="@+id/star4"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star3"
-            app:layout_constraintStart_toEndOf="@+id/star3"
-            app:layout_constraintTop_toTopOf="@+id/star3" />
+            <ImageView
+                android:id="@+id/star3"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star" />
 
-        <ImageView
-            android:id="@+id/star5"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star4"
-            app:layout_constraintStart_toEndOf="@+id/star4"
-            app:layout_constraintTop_toTopOf="@+id/star4" />
+            <ImageView
+                android:id="@+id/star4"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star" />
+
+            <ImageView
+                android:id="@+id/star5"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_star" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/reviews_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="8dp"
             android:fontFamily="sans-serif"
             android:text="13"
             android:textColor="@color/textBlack"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/star5"
-            app:layout_constraintEnd_toEndOf="@+id/rating_number"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/star5"
-            app:layout_constraintTop_toTopOf="@+id/star5"
-            app:layout_constraintVertical_bias="0.5" />
+            app:layout_constraintBottom_toBottomOf="@+id/reviews"
+            app:layout_constraintStart_toEndOf="@+id/reviews"
+            app:layout_constraintTop_toTopOf="@+id/reviews" />
 
         <ImageView
             android:id="@+id/rating_image"
             android:layout_width="24dp"
             android:layout_height="16dp"
-            android:layout_marginStart="112dp"
+            android:layout_marginEnd="10dp"
             android:src="@drawable/ic_rating_up"
             app:layout_constraintBottom_toBottomOf="@+id/trainer_name"
-            app:layout_constraintStart_toEndOf="@+id/trainer_name"
+            app:layout_constraintEnd_toStartOf="@+id/rating_number"
             app:layout_constraintTop_toTopOf="@+id/trainer_name"
-            app:layout_constraintVertical_bias="0.50" />
+            app:layout_constraintVertical_bias="0.5" />
 
         <TextView
             android:id="@+id/rating_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="sans-serif"
             android:text="1.1"
@@ -138,7 +126,6 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/rating_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rating_image"
             app:layout_constraintTop_toTopOf="@+id/rating_image" />
 
         <TextView
