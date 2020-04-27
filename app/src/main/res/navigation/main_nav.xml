@@ -63,7 +63,7 @@
         <action
             android:id="@+id/action_side_settings_to_settingsTypeFragment"
             app:destination="@id/settingsTypeFragment"
-            app:popUpTo="@+id/side_settings" />
+            app:popUpTo="@id/side_settings" />
     </fragment>
     <fragment
         android:id="@+id/settingsTypeFragment"
@@ -73,7 +73,7 @@
         <action
             android:id="@+id/action_settingsTypeFragment_to_settingsListFragment"
             app:destination="@id/settingsListFragment"
-            app:popUpTo="@+id/settingsTypeFragment" />
+            app:popUpTo="@id/side_settings" />
     </fragment>
     <fragment
         android:id="@+id/settingsListFragment"
