@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/transition_container"
+    tools:context=".Activities.ConfirmationActivity">
+
+    <TextView
+        android:id="@+id/tvTypeYourData"
+        style="@style/TitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rlInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:text="@string/type_your_phone" />
+
+
+    <RelativeLayout
+        android:id="@+id/rlInput"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <net.rimoto.intlphoneinput.IntlPhoneInput
+            android:id="@+id/my_phone_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:flagPaddingBottom="4dp"
+            app:flagPaddingEnd="4dp"
+            app:flagPaddingStart="4dp"
+            app:flagPaddingTop="4dp"
+            app:textColor="#000000"
+            app:textSize="14sp" />
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/reg_email"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_centerVertical="true"
+
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20dp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:id="@+id/tietMail"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/code"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_below="@id/tvTypeYourData"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20dp"
+        app:counterMaxLength="6"
+        app:counterEnabled="true"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:id="@+id/tietCode"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/HaveNotReceivedTheCode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/tilCode"
+        android:id="@+id/tvHaveNotReceivedTheCode"
+        />
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="5dp"
+
+        android:text="@string/next"
+
+        android:textAllCaps="false" />
+
+
+</RelativeLayout>

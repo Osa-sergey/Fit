@@ -73,6 +73,7 @@
         android:text="@string/reg_autoSave"
         android:textSize="14sp"
         android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+
         android:gravity="end|center_vertical"
         android:focusable="true"
         android:clickable="true"

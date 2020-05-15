@@ -9,10 +9,16 @@ import android.widget.CheckedTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.serg.fit.R;
 
 import Enums.ServerResponse;
@@ -32,22 +38,37 @@ public class SignInActivity extends AppCompatActivity {
     private SharedPreferences pref;
     private MaterialButton btnSubmit;
 
+
+    private FirebaseAuth mAuth;
+    private boolean hasSignedInSuccessfully = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        // Получаем нынешнего юзера
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        // Проверяем, авторизирован ли пользователь
+        if (currentUser != null) {
+            // Если уже авторизирован, то переходим на главную сразу
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+
         signUpRef = (TextView) findViewById(R.id.log_reg);
         autoSave = (CheckedTextView) findViewById(R.id.signIn_autoSave);
         email = (TextInputEditText) findViewById(R.id.signIn_email);
         password = (TextInputEditText) findViewById(R.id.signIn_password);
-        btnSubmit = (MaterialButton)  findViewById(R.id.signIn_submit);
+        btnSubmit = (MaterialButton) findViewById(R.id.signIn_submit);
+
 
         //переход между логином и регистрацией
         signUpRef.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent signUpIntent = new Intent(SignInActivity.this,SignUpActivity.class);
+                Intent signUpIntent = new Intent(SignInActivity.this, TypeSignUpActivity.class);
                 startActivity(signUpIntent);
             }
         });
@@ -60,23 +81,23 @@ public class SignInActivity extends AppCompatActivity {
             }
         });
         //проверка на наличие незакрытой сессии
-        pref = getApplicationContext().getSharedPreferences("Pref",MODE_PRIVATE);
+        pref = getApplicationContext().getSharedPreferences("Pref", MODE_PRIVATE);
         userPassword = pref.getString("authorizedPassword", "");
 
         //если у нас есть авторизованный с флагом
-        if(!userPassword.equals("")&& pref.getBoolean("authorizedAuto", false)) {
-            userEmail = pref.getString("authorizedEmail","");
+        if (!userPassword.equals("") && pref.getBoolean("authorizedAuto", false)) {
+            userEmail = pref.getString("authorizedEmail", "");
             userAuto = pref.getBoolean("authorizedAuto", false);
             //быстрое подключение для авторизованного пользователя
-            auth(userEmail,userPassword,userAuto);
+            auth(userEmail, userPassword, userAuto);
             //если запомненный пользователь не авторизовался, то вписываем его данные в форму и просим ввести пароль
             email.setText(userEmail);
             autoSave.setChecked(userAuto);
             password.setError(getResources().getString(R.string.err_wrongPassword));
         }
         //авторизованный без флага. Делаем возможность быстрого ввода пароля
-        if(!userPassword.equals("")&& !pref.getBoolean("authorizedAuto", false)){
-            userEmail = pref.getString("authorizedEmail","");
+        if (!userPassword.equals("") && !pref.getBoolean("authorizedAuto", false)) {
+            userEmail = pref.getString("authorizedEmail", "");
             email.setText(userEmail);
             autoSave.setChecked(false);
         }
@@ -84,63 +105,64 @@ public class SignInActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    boolean flag = false;
-                    //проверки на отсутствие ввода
-                    if(email.getText().length()==0){
-                        email.setError(getResources().getString(R.string.err_emptyString));
-                        flag = true;
-                    }
-                    if(password.getText().length()==0){
-                        password.setError(getResources().getString(R.string.err_emptyString));
-                        flag = true;
-                    }
-                    if(flag) return;
-                    userEmail = email.getText().toString();
-                    userPassword = password.getText().toString();
-                    userAuto = autoSave.isChecked();
-                    //авторизация по кнопке
-                    auth(userEmail,userPassword,userAuto);
-                    //для удобства заранее заполняем
-                    email.setText(userEmail);
-                    autoSave.setChecked(userAuto);
+                boolean flag = false;
+                //проверки на отсутствие ввода
+                if (email.getText().length() == 0) {
+                    email.setError(getResources().getString(R.string.err_emptyString));
+                    flag = true;
+                }
+                if (password.getText().length() == 0) {
+                    password.setError(getResources().getString(R.string.err_emptyString));
+                    flag = true;
+                }
+                if (flag) return;
+                userEmail = email.getText().toString();
+                userPassword = password.getText().toString();
+                userAuto = autoSave.isChecked();
+                //авторизация по кнопке
+                auth(userEmail, userPassword, userAuto);
+                //для удобства заранее заполняем
+                email.setText(userEmail);
+                autoSave.setChecked(userAuto);
             }
         });
     }
 
     /**
      * Функция проверки авторизации если проверки пройдены, то перекидывает в основное меню
-     * @param email емаил для проверки
+     *
+     * @param email    емаил для проверки
      * @param password пароль
      * @param autoAuth выставлена ли галочка о том, что пользователя нужно запомнить
      */
-    void auth(String email,String password,boolean autoAuth){
-        Intent mainIntent = new Intent(SignInActivity.this,MainActivity.class);
+    void auth(String email, String password, boolean autoAuth) {
+        Intent mainIntent = new Intent(SignInActivity.this, MainActivity.class);
 
         //проверка на совпадение email авторизованного пользователя и того, что в строке email
-        if(!pref.getString("authorizedPassword","").equals("") &&
-            !pref.getString("authorizedEmail","").equals(email)){
-            pref.edit().putString("authorizedPassword","").apply();
+        if (!pref.getString("authorizedPassword", "").equals("") &&
+                !pref.getString("authorizedEmail", "").equals(email)) {
+            pref.edit().putString("authorizedPassword", "").apply();
         }
-        if(SupportUtils.checkInternetConnection()){
-            if(pref.getString("authorizedPassword","").equals("")){
+        if (SupportUtils.checkInternetConnection()) {
+            if (pref.getString("authorizedPassword", "").equals("")) {
                 //авторизованного пользователя нету
-                if(!SupportUtils.checkEmail(email)){
+                if (!SupportUtils.checkEmail(email)) {
                     this.email.setError(getResources().getString(R.string.err_notCheckedEmail));
                     return;
                 }
-                if(!SupportUtils.checkPassword(password)){
+                if (!SupportUtils.checkPassword(password)) {
                     this.password.setError(getResources().getString(R.string.err_notCheckedPass));
                     return;
                 }
                 password = SupportUtils.md5(password);
 
-                ServerResponse response = serverAuthorization(email,password);
-                switch (response){
+                ServerResponse response = serverAuthorization(email, password);
+                switch (response) {
                     case SUCCESSFULLY:
-                        pref.edit().putString("authorizedEmail",email).
-                                putString("authorizedPassword",password).
-                                putBoolean("authorizedAuto",autoAuth).apply();
-                        Log.d("sp",email+" "+password+ " "+autoAuth);
+                        pref.edit().putString("authorizedEmail", email).
+                                putString("authorizedPassword", password).
+                                putBoolean("authorizedAuto", autoAuth).apply();
+                        Log.d("sp", email + " " + password + " " + autoAuth);
                         //TODO проверка что есть БД под него
                         startActivity(mainIntent);
                         break;
@@ -149,80 +171,80 @@ public class SignInActivity extends AppCompatActivity {
                         this.email.setError(getResources().getString(R.string.err_authFail));
                         break;
                     case NO_CONNECTION:
-                        Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getText(R.string.err_notConnection), Toast.LENGTH_LONG).show();
                         break;
                     case NOT_CONFIRMED:
-                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.err_notConfirmed),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.err_notConfirmed), Toast.LENGTH_LONG).show();
                 }
-            }else {
-                if(!autoAuth) {
+            } else {
+                if (!autoAuth) {
                     //проверка пароля, хеширование
-                    if(!SupportUtils.checkPassword(password)){
+                    if (!SupportUtils.checkPassword(password)) {
                         this.password.setError(getResources().getString(R.string.err_notCheckedPass));
-                        pref.edit().putString("authorizedPassword","").apply();
+                        pref.edit().putString("authorizedPassword", "").apply();
                         return;
                     }
                     password = SupportUtils.md5(password);
                 }
-                ServerResponse response = serverAuthorization(email,password);
-                switch (response){
+                ServerResponse response = serverAuthorization(email, password);
+                switch (response) {
                     case SUCCESSFULLY:
-                        pref.edit().putString("authorizedEmail",email).
-                                putString("authorizedPassword",password).
-                                putBoolean("authorizedAuto",autoAuth).apply();
-                        Log.d("sp",email+" "+password+ " "+autoAuth);
+                        pref.edit().putString("authorizedEmail", email).
+                                putString("authorizedPassword", password).
+                                putBoolean("authorizedAuto", autoAuth).apply();
+                        Log.d("sp", email + " " + password + " " + autoAuth);
                         startActivity(mainIntent);
                         break;
                     case WRONG_PASS_OR_EMAIL:
                         this.password.setError(getResources().getString(R.string.err_authFail));
                         this.email.setError(getResources().getString(R.string.err_authFail));
-                        pref.edit().putString("authorizedPassword","").apply();
+                        pref.edit().putString("authorizedPassword", "").apply();
                         break;
                     case NO_CONNECTION:
-                        Toast.makeText(getApplicationContext(),getResources().getText(R.string.err_notConnection),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getResources().getText(R.string.err_notConnection), Toast.LENGTH_LONG).show();
                 }
             }
-        }else {
-            if(!pref.getString("authorizedPassword","").equals("")){
-                if(autoAuth){
+        } else {
+            if (!pref.getString("authorizedPassword", "").equals("")) {
+                if (autoAuth) {
                     //авторизованный пользователь есть, флажок есть
                     //переходим к приложению
                     startActivity(mainIntent);
-                }else{
+                } else {
                     //авторизованный пользователь есть, но флажка нет
                     //проверка пароля, хеширование
-                    if(!SupportUtils.checkPassword(password)){
+                    if (!SupportUtils.checkPassword(password)) {
                         this.password.setError(getResources().getString(R.string.err_notCheckedPass));
-                        pref.edit().putString("authorizedPassword","").apply();
+                        pref.edit().putString("authorizedPassword", "").apply();
                         return;
                     }
                     password = SupportUtils.md5(password);
-                    if(password.equals(pref.getString("authorizedPassword",""))){
+                    if (password.equals(pref.getString("authorizedPassword", ""))) {
                         startActivity(mainIntent);
-                    }else{
+                    } else {
                         this.password.setError(getResources().getString(R.string.err_wrongPassword));
-                        pref.edit().putString("authorizedPassword","").apply();
+                        pref.edit().putString("authorizedPassword", "").apply();
                     }
                 }
-            }else{
+            } else {
                 String DBPassword = getPasswordFromDB(email);
-                if(DBPassword == null) {
+                if (DBPassword == null) {
                     this.password.setError(getResources().getString(R.string.err_authFail));
                     this.email.setError(getResources().getString(R.string.err_authFail));
                     return;
                 }
-                if(!SupportUtils.checkPassword(password)){
+                if (!SupportUtils.checkPassword(password)) {
                     this.password.setError(getResources().getString(R.string.err_notCheckedPass));
                     return;
                 }
                 password = SupportUtils.md5(password);
-                if(password.equals(DBPassword)){
-                    pref.edit().putString("authorizedEmail",email).
-                            putString("authorizedPassword",password).
-                            putBoolean("authorizedAuto",autoAuth).apply();
-                    Log.d("sp",email+" "+password+ " "+autoAuth);
+                if (password.equals(DBPassword)) {
+                    pref.edit().putString("authorizedEmail", email).
+                            putString("authorizedPassword", password).
+                            putBoolean("authorizedAuto", autoAuth).apply();
+                    Log.d("sp", email + " " + password + " " + autoAuth);
                     startActivity(mainIntent);
-                }else {
+                } else {
                     this.password.setError(getResources().getString(R.string.err_authFail));
                     this.email.setError(getResources().getString(R.string.err_authFail));
                 }
@@ -232,6 +254,7 @@ public class SignInActivity extends AppCompatActivity {
 
     /**
      * Делает завпрос к базе данных чтобы выяснить наличие данного пользователя в сохраненных
+     *
      * @param email email сохраненного пользователя
      * @return hash если пользователь есть в базе, null если нету
      */
@@ -242,15 +265,42 @@ public class SignInActivity extends AppCompatActivity {
 
     /**
      * Отправка запроса авторизации на сервер
-     * @param userEmail почта
+     *
+     * @param userEmail    почта
      * @param userPassword хэш пароля
      * @return SUCCESSFULLY успешное выполнение авторизации,
-     *     NO_CONNECTION нет соединения с сервером,
-     *     WRONG_PASS_OR_EMAIL неверная комбинация email, password
+     * NO_CONNECTION нет соединения с сервером,
+     * WRONG_PASS_OR_EMAIL неверная комбинация email, password
      */
     //TODO посылка запроса на авторизацию пользователя
     private ServerResponse serverAuthorization(String userEmail, String userPassword) {
-        return ServerResponse.SUCCESSFULLY;
+
+        mAuth.signInWithEmailAndPassword(userEmail, userPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Если авторизация прошла успешна
+                            Log.d("SignInActivity: ", "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            hasSignedInSuccessfully = true;
+
+                        } else {
+                            // Если произошла ошибка
+                            Log.w("SignInActivity: ", "signInWithEmail:failure", task.getException());
+                            Toast.makeText(SignInActivity.this, "Ошибка авторизации: " + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
+                            hasSignedInSuccessfully = false;
+
+                        }
+
+                        // ...
+                    }
+                });
+
+        if (hasSignedInSuccessfully)
+            return ServerResponse.SUCCESSFULLY;
+        else return ServerResponse.UNSUCCESSFULLY;
     }
 }
 
