@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.serg.fit"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -46,6 +46,14 @@ dependencies {
     //    Phone number picker
     implementation 'net.rimoto:intlphoneinput:1.0.1'
 
-//    Transition animation
-    implementation "com.andkulikov:transitionseverywhere:2.0.0"
+    //    Transition animation
+
+
+
+    implementation "com.andkulikov:transitionseverywhere:2.1.0"
+    implementation("com.squareup.okhttp3:okhttp:4.6.0")
+
+
+
+
 }

@@ -31,6 +31,11 @@
         <activity
             android:name=".Activities.MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.ConversationActivity"
+
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
