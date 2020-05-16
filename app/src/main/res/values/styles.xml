@@ -16,4 +16,23 @@
     <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="color">@color/hamburgerBlack</item>
     </style>
+
+    <style name="TitleText">
+        <!--          <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:text="@string/signin_text"
+                android:textColor="@color/textBlack"
+                android:textSize="25sp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <item name="android:textColor">@color/textBlack</item>
+        <item name="android:textSize">25sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+
+    </style>
 </resources>
