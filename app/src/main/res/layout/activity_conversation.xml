@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Activities.ConversationActivity">
+
+    <ListView
+        android:id="@+id/lvChat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/chat_container"/>
+
+    <LinearLayout
+        android:id="@+id/chat_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:weightSum="20">
+
+        <ImageView
+            android:id="@+id/ivEmoji"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_insert_emoticon_black_24dp" />
+
+        <EditText
+            android:id="@+id/etMessage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="16"
+            android:background="@android:color/transparent"
+            android:hint="@string/writeMessage"
+            android:maxLength="4096"
+            android:maxLines="8"
+            android:paddingStart="18dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="18dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/textWhite"
+            android:textColorHint="#CACACA"
+            android:textSize="18sp" />
+
+
+        <ImageView
+            android:id="@+id/ivAttachment"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_attach_file_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/ivVoiceMessage"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_mic_black_24dp" />
+
+        <ImageView
+            android:id="@+id/ivSend"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="4dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_send_black_24dp"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

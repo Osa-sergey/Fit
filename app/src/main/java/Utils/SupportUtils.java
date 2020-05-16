@@ -11,6 +11,7 @@ public class SupportUtils {
 
     /**
      * Проверка на подключение либо к мобильной либо к стационароной сети
+     *
      * @return true если есть подключение
      */
     //TODO проверять наличие подключения но не сигнала
@@ -20,6 +21,7 @@ public class SupportUtils {
 
     /**
      * Функция для проверки правильности формата почты
+     *
      * @param email проверяемая почта
      * @return true если подходит по формату, иначе false
      */
@@ -31,6 +33,7 @@ public class SupportUtils {
 
     /**
      * Функция для проверки правильности формата пароля
+     *
      * @param password проверяем пароль
      * @return true если подходит по формату, иначе false
      */
@@ -40,6 +43,7 @@ public class SupportUtils {
 
     /**
      * Проверка на имя
+     *
      * @param name проверяемая строка
      * @return true, если содержатся только буквы
      */
@@ -51,6 +55,7 @@ public class SupportUtils {
 
     /**
      * Кастомная функция хэширования md5
+     *
      * @param st хэшируемая строка
      * @return хэш
      */
@@ -70,7 +75,7 @@ public class SupportUtils {
         BigInteger bigInt = new BigInteger(1, digest);
         String md5Hex = bigInt.toString(16);
 
-        while( md5Hex.length() < 32 ){
+        while (md5Hex.length() < 32) {
             md5Hex = "0" + md5Hex;
         }
         return md5Hex;
@@ -78,7 +83,18 @@ public class SupportUtils {
 
     public static String getDateTimeForChat(long date) {
         //TODO написать для чата перевод в дату или день
-        return "";
+
+//        Временно написал, просто, чтобы визуально на дизайне видеть
+        if (System.currentTimeMillis() - date <= 86400000)
+            return "Сегодня";
+        else if (System.currentTimeMillis() - date > 86400000 && System.currentTimeMillis() - date < 86400000 * 2)
+            return "Вчера";
+        else {
+//            TODO: Если будем выводить даты, то сделать разный формат для US и других пользователей
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            String dateString = formatter.format(new Date(date));
+            return dateString;
+        }
     }
 
     public static String getSpentTime(long spentTime) {

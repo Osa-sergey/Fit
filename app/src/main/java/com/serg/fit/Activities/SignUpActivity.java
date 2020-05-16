@@ -56,6 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
     private SigningUpTypes signingUpType;
     private String email;
 
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         signInRef = (TextView) findViewById(R.id.reg_log);
-        signUpAsATrainer = findViewById(R.id.tv_trainer);
+        signUpAsATrainer = findViewById(R.id.tvTrainer);
 
 //        Подчеркаию текст
         signUpAsATrainer.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -247,9 +249,10 @@ public class SignUpActivity extends AppCompatActivity {
      */
     private ServerResponse serverCreationAccount(final String Name, final String SecondName, String Email, String PasswordMd5) {
 
-        final FirebaseUser user = mAuth.getCurrentUser();
+         user = mAuth.getCurrentUser();
 
         if (signingUpType == SigningUpTypes.EMAIL) {
+
 
 
             mAuth.createUserWithEmailAndPassword(Email, PasswordMd5)
