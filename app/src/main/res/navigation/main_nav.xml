@@ -30,14 +30,8 @@
     </fragment>
     <fragment
         android:id="@+id/side_trainers"
-        android:name="Fragments.SideMenu.ForTrainers.TrainersFragment"
-        tools:layout="@layout/fragment_trainers">
-        <action
-            android:id="@+id/action_side_trainers_to_trainerProfileFragment"
-            app:destination="@id/trainerProfileFragment"
-            app:popUpTo="@id/side_trainers"
-            app:popUpToInclusive="true" />
-    </fragment>
+        android:name="Fragments.SideMenu.TrainersFragment"
+        tools:layout="@layout/fragment_trainers"/>
     <fragment
         android:id="@+id/side_exercises"
         android:name="Fragments.SideMenu.ExercisesFragment"
@@ -63,7 +57,7 @@
         <action
             android:id="@+id/action_side_settings_to_settingsTypeFragment"
             app:destination="@id/settingsTypeFragment"
-            app:popUpTo="@id/side_settings" />
+            app:popUpTo="@+id/side_settings" />
     </fragment>
     <fragment
         android:id="@+id/settingsTypeFragment"
@@ -73,7 +67,7 @@
         <action
             android:id="@+id/action_settingsTypeFragment_to_settingsListFragment"
             app:destination="@id/settingsListFragment"
-            app:popUpTo="@id/side_settings" />
+            app:popUpTo="@+id/settingsTypeFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsListFragment"
@@ -87,19 +81,4 @@
         tools:layout="@layout/fragment_edit_profile">
 
     </fragment>
-    <fragment
-        android:id="@+id/trainerProfileFragment"
-        android:name="Fragments.SideMenu.ForTrainers.TrainerProfileFragment"
-        android:label="TrainerProfileFragment"
-        tools:layout="@layout/fragment_trainer_profile">
-        <action
-            android:id="@+id/action_trainerProfileFragment_to_writeReviewFragment"
-            app:destination="@id/writeReviewFragment"
-            app:popUpTo="@id/trainerProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/writeReviewFragment"
-        android:name="Fragments.SideMenu.ForTrainers.WriteReviewFragment"
-        android:label="WriteReviewFragment"
-        tools:layout="@layout/fragment_write_review"/>
 </navigation>

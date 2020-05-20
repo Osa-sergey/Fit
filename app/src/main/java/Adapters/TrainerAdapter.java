@@ -22,7 +22,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerHolder> {
 
     private List<TrainerItem> trainerItemList = new ArrayList<>();
-    private View.OnClickListener onItemClickListener;
 
     @NonNull
     @Override
@@ -47,14 +46,6 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerH
         notifyDataSetChanged();
     }
 
-    public void setOnItemClickListener(View.OnClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
-    }
-
-    public TrainerItem getItem(int pos){
-        return trainerItemList.get(pos);
-    }
-
     public class TrainerHolder extends RecyclerView.ViewHolder {
 
         private CircleImageView avatar;
@@ -66,8 +57,6 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerH
 
         public TrainerHolder(@NonNull View itemView) {
             super(itemView);
-            itemView.setTag(this);
-            itemView.setOnClickListener(onItemClickListener);
             ImageView star1,star2,star3,star4,star5;
             star1 = (ImageView) itemView.findViewById(R.id.star1);
             star2 = (ImageView) itemView.findViewById(R.id.star2);
@@ -86,18 +75,9 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.TrainerH
         public void bind(TrainerItem trainerItem) {
             //TODO добавить аватар
             trainerName.setText(trainerItem.getTrainerName());
-            float starsCount = trainerItem.getStarsCount();
-            int i;
-            for(i=0;i<(int)starsCount;i++){
-                stars.get(i).setImageResource(R.drawable.ic_star_accent);
-            }
-            if((starsCount - (int)starsCount) < 0.25)
-                stars.get(i).setImageResource(R.drawable.ic_star);
-            else if((starsCount - (int)starsCount) < 0.75) stars.get(i).setImageResource(R.drawable.ic_half_star);
-                else stars.get(i).setImageResource(R.drawable.ic_star_accent);
-            i++;
-            for (int j = i; j < 5;j ++) {
-                stars.get(j).setImageResource(R.drawable.ic_star);
+            for(int i=0;i<5;i++){
+                if(i<trainerItem.getStarsCount()) stars.get(i).setImageResource(R.drawable.ic_star_accent);
+                else stars.get(i).setImageResource(R.drawable.ic_star);
             }
             comment.setText(trainerItem.getComment());
             ratingNumber.setText(String.valueOf(trainerItem.getRatingNumber()));
