@@ -56,6 +56,9 @@ public class SplashActivity extends AppCompatActivity {
         }
    }
 
+
+   
+
     private void startAnim(){
         ValueAnimator animator = ValueAnimator.ofFloat(0f,1f).setDuration(ANIM_TIME);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
