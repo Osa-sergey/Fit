@@ -270,4 +270,6 @@ public class ConversationActivity extends AppCompatActivity {
             super.onOpen(webSocket, response);
         }
     }
+
+
 }
