@@ -23,6 +23,7 @@
     <string name="err_differentPass">Passwords do not match</string>
     <string name="err_badName">Name can not contain spaces</string>
     <string name="err_notInternet">No connection to the Internet</string>
+    <string name="err_emptyReview">Please comment on the review</string>
     <string name="ok">OK</string>
     <string name="hint_occupied">The email is already in use.</string>
     <string name="hint_contacts">Thank you for the request! The answer will be sent to your email.</string>
@@ -48,12 +49,24 @@
     <string name="trainer_reviews">Reviews:</string>
 
     <string name="profile_weight">Weight</string>
+    <string name="profile_weight_measure">kg</string>
     <string name="profile_power">Body type</string>
     <string name="profile_experience">Experience</string>
     <string name="profile_age">Age</string>
     <string name="profile_email">E-mail</string>
     <string name="profile_phone">Phone</string>
     <string name="profile_med">Medical condition</string>
+    <string name="profile_about">О себе</string>
+
+    <string name="trainer_profile_experience">Опыт</string>
+    <string name="trainer_profile_rating">Рейтинг</string>
+    <string name="trainer_profile_review">Отзывы</string>
+    <string name="trainer_profile_age">Возраст</string>
+    <string name="trainer_profile_email">E-mail</string>
+    <string name="trainer_profile_phone">Телефон</string>
+    <string name="trainer_profile_to_write">Написать</string>
+    <string name="trainer_profile_to_write_review">Оставить отзыв</string>
+    <string name="trainer_profile_about">О себе</string>
 
     <string name="fragment_contacts">Contacts</string>
     <string name="contacts_them">Type a topic of the question…</string>
@@ -65,7 +78,6 @@
     <string name="settings_data">Who can see my hidden information</string>
     <string name="settings_select_sound">Pick a sound</string>
     <string name="read_more">Read more…</string>
-    <string name="copy">Copy the link</string>
     <string name="importance">Importance</string>
     <string name="performed">Progress:</string>
     <!--    TODO: Посмотреть к чему это относится и перевести-->
@@ -106,7 +118,6 @@
     <string name="select_users">Pick a user</string>
     <string name="selected_chat">Selected chat</string>
     <string name="copy_link">Share</string>
-    <string name="weight">kg</string>
     <string name="signup_trainer">Sign Up as a Trainer</string>
     <string name="reg_via">Sing Up</string>
     <string name="via_mail">Via Email</string>
@@ -120,7 +131,27 @@
     <string name="incorrect_number">Incorrect phone number</string>
     <string name="codeSent">Confirmation code has been sent again</string>
     <string name="mailSent">Confirmation letter has been sent again</string>
-    <string name="writeMessage">Write a message…</string>
 
+    <array name="year_type">
+        <item>лет</item>
+        <item>год</item>
+        <item>года</item>
+    </array>
+
+    <string name="add_review">Введите ваш отзыв…</string>
+    <string name="editName">Введите имя</string>
+    <string name="editSecondName">Введите фамилию</string>
+    <string name="profile_gender">Пол</string>
+    <string name="profile_birthday">Дата рождения</string>
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+    <string name="writeMessage">Написать сообщение…</string>
+
+    <string-array name="power_type">
+        <item>Не выбрано</item>
+        <item>Эктоморф</item>
+        <item>Мезоморф</item>
+        <item>Эндоморф</item>
+    </string-array>
 
 </resources>
