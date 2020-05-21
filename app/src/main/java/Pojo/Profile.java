@@ -1,16 +1,24 @@
 package Pojo;
 
-import java.util.Objects;
 
 public class Profile {
     private String fullName;
     private float weight;
     private String power;
-    private String experience;
+    private int experience = -1;
     private int age;
     private String email;
     private String phone;
     private String med;
+    private String about;
+
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
 
     public Profile(String fullName) {
         this.fullName = fullName;
@@ -40,11 +48,11 @@ public class Profile {
         this.power = power;
     }
 
-    public String getExperience() {
+    public int getExperience() {
         return experience;
     }
 
-    public void setExperience(String experience) {
+    public void setExperience(int experience) {
         this.experience = experience;
     }
 
@@ -80,23 +88,5 @@ public class Profile {
         this.med = med;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Profile profile = (Profile) o;
-        return age == profile.age &&
-                fullName.equals(profile.fullName) &&
-                Objects.equals(weight, profile.weight) &&
-                Objects.equals(power, profile.power) &&
-                Objects.equals(experience, profile.experience) &&
-                Objects.equals(email, profile.email) &&
-                Objects.equals(phone, profile.phone) &&
-                Objects.equals(med, profile.med);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(fullName, weight, power, experience, age, email, phone, med);
-    }
 }

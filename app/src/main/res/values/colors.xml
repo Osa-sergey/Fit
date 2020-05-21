@@ -19,4 +19,5 @@
     <color name="colorProgressBarBackground">#fff</color>
     <color name="tabsChecked">#fff</color>
     <color name="tabsNoChecked">#D8D4D4</color>
+    <color name="textColorHighLite">#0F4C81</color>
 </resources>

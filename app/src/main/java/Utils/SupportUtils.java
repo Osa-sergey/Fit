@@ -5,6 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -101,5 +102,19 @@ public class SupportUtils {
     public static String getSpentTime(long spentTime) {
         //TODO написать
         return "";
+    }
+
+    /**
+     * формирование текста с правильным обозначениеме года
+     * @param age номер года
+     * @param arr текст для добавления
+     * @return форматированная строка
+     */
+    public static String editAge(int age, List<String> arr) {
+        String str = String.valueOf(age) + " ";
+        if(age%10>4||age%10==0||age>9 && age<15) str += arr.get(0); //лет
+        else if(age%10==1) str += arr.get(1); //год
+        else str += arr.get(2); //года
+        return str;
     }
 }
