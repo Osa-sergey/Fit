@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimary">#0F4C81</color>
     <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryLight">#8BC1EF</color>
     <color name="colorAccent">#F2790F</color>
+    <color name="colorAccentLight">#FFA84B</color>
     <color name="textBlack">#000</color>
     <color name="boxStroke">#0C5E51</color>
     <color name="buttonTint">#008A5A</color>
@@ -17,5 +19,4 @@
     <color name="colorProgressBarBackground">#fff</color>
     <color name="tabsChecked">#fff</color>
     <color name="tabsNoChecked">#D8D4D4</color>
-    <color name="textColorHighLite">#0F4C81</color>
 </resources>

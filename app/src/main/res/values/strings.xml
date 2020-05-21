@@ -120,6 +120,7 @@
     <string name="incorrect_number">Incorrect phone number</string>
     <string name="codeSent">Confirmation code has been sent again</string>
     <string name="mailSent">Confirmation letter has been sent again</string>
+    <string name="writeMessage">Write a message…</string>
 
 
 </resources>

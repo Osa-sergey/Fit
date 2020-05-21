@@ -1,27 +1,22 @@
 package Pojo;
 
+import java.util.Objects;
 
 public class TrainerItem {
-
-    private int id;
     private String url;
     private String trainerName;
     private String comment;
-    private float starsCount;
+    private int starsCount;
     private float ratingNumber;
     private int reviewsCount;
 
-    public TrainerItem(String url, String trainerName, String comment, float starsCount, float ratingNumber, int reviewsCount) {
+    public TrainerItem(String url, String trainerName, String comment, int starsCount, float ratingNumber, int reviewsCount) {
         this.url = url;
         this.trainerName = trainerName;
         this.comment = comment;
         this.starsCount = starsCount;
         this.ratingNumber = ratingNumber;
         this.reviewsCount = reviewsCount;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getUrl() {
@@ -48,11 +43,11 @@ public class TrainerItem {
         this.comment = comment;
     }
 
-    public float getStarsCount() {
+    public int getStarsCount() {
         return starsCount;
     }
 
-    public void setStarsCount(float starsCount) {
+    public void setStarsCount(int starsCount) {
         this.starsCount = starsCount;
     }
 
@@ -72,7 +67,21 @@ public class TrainerItem {
         this.reviewsCount = reviewsCount;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TrainerItem that = (TrainerItem) o;
+        return starsCount == that.starsCount &&
+                ratingNumber == that.ratingNumber &&
+                reviewsCount == that.reviewsCount &&
+                Objects.equals(url, that.url) &&
+                trainerName.equals(that.trainerName) &&
+                Objects.equals(comment, that.comment);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(url, trainerName, comment, starsCount, ratingNumber, reviewsCount);
     }
 }

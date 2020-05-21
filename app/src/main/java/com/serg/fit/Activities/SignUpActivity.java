@@ -56,6 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
     private SigningUpTypes signingUpType;
     private String email;
 
+    FirebaseUser user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         signInRef = (TextView) findViewById(R.id.reg_log);
-        signUpAsATrainer = findViewById(R.id.tv_trainer);
+        signUpAsATrainer = findViewById(R.id.tvTrainer);
 
 //        Подчеркаию текст
         signUpAsATrainer.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -247,9 +249,10 @@ public class SignUpActivity extends AppCompatActivity {
      */
     private ServerResponse serverCreationAccount(final String Name, final String SecondName, String Email, String PasswordMd5) {
 
-        final FirebaseUser user = mAuth.getCurrentUser();
+
 
         if (signingUpType == SigningUpTypes.EMAIL) {
+
 
 
             mAuth.createUserWithEmailAndPassword(Email, PasswordMd5)
@@ -260,7 +263,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 // Sign in success, update UI with the signed-in user's information
                                 Log.d("SignUpActivity: ", "createUserWithEmail:success");
 
-
+                                user = mAuth.getCurrentUser();
                                 // Добавляем имя и фамилию в аккаунт
                                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(Name + " " + SecondName).build();
                                 user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {

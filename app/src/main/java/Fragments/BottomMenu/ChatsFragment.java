@@ -1,7 +1,9 @@
 package Fragments.BottomMenu;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.serg.fit.Activities.ConversationActivity;
 import com.serg.fit.R;
 
 import java.util.Arrays;
@@ -33,11 +36,20 @@ public class ChatsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(adapter);
         loadItems();
+
         return view;
     }
 
     private void loadItems() {
-        adapter.addItems(Arrays.asList(new ChatItem(null,"Овчинников Сергей",true,"Привет друг",200),
-                new ChatItem(null,"Кирилл петров",false,"Новая тренировка",2344)));
+        adapter.addItems(Arrays.asList(new ChatItem(null,"Овчинников Сергей",true,"Привет друг",System.currentTimeMillis() ),
+                new ChatItem(null,"Кирилл Петров",false,"Новая тренировка в стиле 70-ых",2344)));
+
+        adapter.setOnItemClickListener(new ChatAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                startActivity(new Intent(getContext(), ConversationActivity.class));
+
+            }
+        });
     }
 }
