@@ -69,7 +69,7 @@ public class ConversationActivity extends AppCompatActivity {
     private ListView lvMessages;
     private ListViewAdapter listViewAdapter;
 
-    private String urlGetMessage = "";
+    private String urlGetMessage = "https://";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class ConversationActivity extends AppCompatActivity {
         listViewAdapter = new ListViewAdapter();
 
 
-        initWebSocket(urlGetMessage);
+//        initWebSocket(urlGetMessage);
 
 
 
