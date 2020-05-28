@@ -27,7 +27,7 @@ import java.util.List;
 
 import Adapters.ExerciseAdapter;
 import Pojo.ExerciseItem;
-import Utils.GridItemDecoration;
+import Utils.LinearItemDecoration;
 
 public class ExercisesFragment extends Fragment {
 
@@ -97,7 +97,7 @@ public class ExercisesFragment extends Fragment {
         adapter.setOnItemClickListener(onItemClickListener);
         manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
-        recyclerView.addItemDecoration(new GridItemDecoration(10));
+        recyclerView.addItemDecoration(new LinearItemDecoration(10));
         loadItems();
         return view;
     }

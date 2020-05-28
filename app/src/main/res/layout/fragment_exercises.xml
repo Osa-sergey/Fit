@@ -20,6 +20,7 @@
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
         android:clipToPadding="false"
+
         tools:listitem="@layout/view_exercise_simple_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

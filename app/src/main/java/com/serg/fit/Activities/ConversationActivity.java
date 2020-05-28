@@ -2,7 +2,6 @@ package com.serg.fit.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 import androidx.transition.Fade;
 import androidx.transition.TransitionManager;
 import androidx.transition.TransitionSet;
@@ -167,7 +166,7 @@ public class ConversationActivity extends AppCompatActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             if (view == null)
-                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.chat_item, null);
+                view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.view_chat_item, null);
             tvMessageReceived = view.findViewById(R.id.tvMessageReceived);
             tvMessageSent = view.findViewById(R.id.tvSentMessage);
 
