@@ -109,7 +109,7 @@ public class SignUpActivity extends AppCompatActivity {
         signUpAsATrainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                //TODO Обработать юзера без плея
                 // Вставить потом ссылку на приложение для тренера вместо этого
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("market://details?id=apps.trubanasklade.ru"));

@@ -27,7 +27,7 @@
     <string name="ok">ОК</string>
     <string name="hint_occupied">Пользователь с такой почтой уже существует.</string>
     <string name="hint_contacts">Спасибо за Ваш вопрос! Ответ будет прислан Вам на почту.</string>
-    <string name="hint_success">Спасибо за регистрацию!  Вам на почту пришло письмо. Приложение будет доступно после прохождения по ссылке в этом письме.</string>
+    <string name="hint_success">Спасибо за регистрацию! Вам на почту пришло письмо. Приложение будет доступно после прохождения по ссылке в этом письме.</string>
     <string name="hint_rerun">Пожалуйста подтвердите почту</string>
     <string name="err_notConfirmed">Подтвердите Вашу почту</string>
 
