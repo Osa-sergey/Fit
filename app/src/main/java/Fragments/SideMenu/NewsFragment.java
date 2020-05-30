@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.serg.fit.R;
 
-import java.util.Arrays;
-
 import Adapters.NewsAdapter;
-import Pojo.NewsItem;
 import Utils.LinearItemDecoration;
 
 public class NewsFragment extends Fragment {
@@ -38,6 +35,6 @@ public class NewsFragment extends Fragment {
     }
 
     private void loadItems() {
-        adapter.addItems(Arrays.asList(new NewsItem("Название","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...","")));
+      //  adapter.addItems(Arrays.asList(new NewsItem("Название","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...","")));
     }
 }

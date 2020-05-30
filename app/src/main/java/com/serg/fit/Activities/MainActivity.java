@@ -16,6 +16,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.serg.fit.R;
 
+import DB.DBHelper;
+
 public class MainActivity extends AppCompatActivity {
 
     private BottomNavigationView bottomNavigationView;
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView,navController);
         NavigationUI.setupWithNavController(navigationView,navController);
 
+        //TODO изменить название БД
+        //Ининциализируем БД
+        DBHelper.getInstance(getApplicationContext(),"Test");
     }
 
     /**

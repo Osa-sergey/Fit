@@ -1,19 +1,46 @@
 package Pojo;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
+@Entity (tableName = "news")
 public class NewsItem {
+
+    @PrimaryKey
+    private int id;
+
+    @NonNull
     private String title;
+
+    @ColumnInfo (name = "text_news")
+    @NonNull
     private String text;
+
+    @Ignore
     private String imgUrl;
 
+    @Ignore
     private boolean expanded;
 
-    public NewsItem(String title, String text, String imgUrl) {
+    public NewsItem(int id, String title, String text) {
+        this.id = id;
         this.title = title;
         this.text = text;
-        this.imgUrl = imgUrl;
         this.expanded = false;
+        imgUrl = "news_photo_prev_"+id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isExpanded() {
@@ -42,10 +69,6 @@ public class NewsItem {
 
     public String getImgUrl() {
         return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
     }
 
     @Override

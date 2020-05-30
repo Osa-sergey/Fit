@@ -84,12 +84,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
             title.setText(newsItem.getTitle());
             text.setText(newsItem.getText());
 
-            if(newsItem.getImgUrl().equals("")){
-                image.setVisibility(View.GONE);
-            }else{
-                image.setVisibility(View.VISIBLE);
-            }
-
             if(newsItem.isExpanded()){
                 readMore.setVisibility(View.GONE);
                 text.setMaxLines(1000);
