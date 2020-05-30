@@ -27,7 +27,7 @@ import java.util.List;
 
 import Adapters.ExerciseAdapter;
 import Pojo.ExerciseItem;
-import Utils.GridItemDecoration;
+import Utils.LinearItemDecoration;
 
 public class ExercisesFragment extends Fragment {
 
@@ -49,33 +49,34 @@ public class ExercisesFragment extends Fragment {
             //TODO загрузить картинку
             TextView title = (TextView) dialogExercise.findViewById(R.id.exercise_title);
             TextView mainText = (TextView) dialogExercise.findViewById(R.id.main_text);
-            ImageView star1,star2,star3,star4,star5;
+            ImageView star1, star2, star3, star4, star5;
             star1 = (ImageView) dialogExercise.findViewById(R.id.star1);
             star2 = (ImageView) dialogExercise.findViewById(R.id.star2);
             star3 = (ImageView) dialogExercise.findViewById(R.id.star3);
             star4 = (ImageView) dialogExercise.findViewById(R.id.star4);
             star5 = (ImageView) dialogExercise.findViewById(R.id.star5);
             List<ImageView> stars = new ArrayList<>();
-            stars.addAll(Arrays.asList(star1,star2,star3,star4,star5));
+            stars.addAll(Arrays.asList(star1, star2, star3, star4, star5));
             MaterialButton btn = (MaterialButton) dialogExercise.findViewById(R.id.btn_submit);
             title.setText(item.getTitle());
             mainText.setText(item.getDescription());
-            for (int i = 0; i <5 ; i++) {
-                if(i<item.getStarsCount()) stars.get(i).setImageResource(R.drawable.ic_star_accent);
+            for (int i = 0; i < 5; i++) {
+                if (i < item.getStarsCount())
+                    stars.get(i).setImageResource(R.drawable.ic_star_accent);
                 else stars.get(i).setImageResource(R.drawable.ic_star);
             }
             List<Chip> tags = new ArrayList<>();
-            Chip chip1,chip2,chip3,chip4;
+            Chip chip1, chip2, chip3, chip4;
             chip1 = (Chip) dialogExercise.findViewById(R.id.chip1);
             chip2 = (Chip) dialogExercise.findViewById(R.id.chip2);
             chip3 = (Chip) dialogExercise.findViewById(R.id.chip3);
             chip4 = (Chip) dialogExercise.findViewById(R.id.chip4);
-            tags.addAll(Arrays.asList(chip1,chip2,chip3,chip4));
-            for (int i = 0; i <4 ; i++) {
-                if(i<item.getTags().size()){
+            tags.addAll(Arrays.asList(chip1, chip2, chip3, chip4));
+            for (int i = 0; i < 4; i++) {
+                if (i < item.getTags().size()) {
                     tags.get(i).setVisibility(View.VISIBLE);
                     tags.get(i).setText(item.getTags().get(i));
-                }else tags.get(i).setVisibility(View.GONE);
+                } else tags.get(i).setVisibility(View.GONE);
             }
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -86,29 +87,30 @@ public class ExercisesFragment extends Fragment {
             dialogExercise.show();
         }
     };
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exercises,null);
+        View view = inflater.inflate(R.layout.fragment_exercises, null);
         recyclerView = (RecyclerView) view.findViewById(R.id.exercise_recyclerView);
         recyclerView.hasFixedSize();
         adapter = new ExerciseAdapter();
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
-        manager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        manager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
-        recyclerView.addItemDecoration(new GridItemDecoration(10));
+        recyclerView.addItemDecoration(new LinearItemDecoration(10));
         loadItems();
         return view;
     }
 
     private void loadItems() {
         List<String> tags = new ArrayList<>();
-        tags.addAll(Arrays.asList("корпус","пресс"));
-        adapter.addItems(Arrays.asList(new ExerciseItem(3,"","Пресc","Поднятие корпуса без отрыва ног от пола",tags),
-                new ExerciseItem(3,"","Продольное скручивание","Выполняйте упражнение, как показано на картинке",tags),
-                new ExerciseItem(3,"","Пресc","Поднятие корпуса без отрыва ног от пола",tags),
-                new ExerciseItem(3,"","Пресc","Поднятие корпуса без отрыва ног от пола",tags),
-                new ExerciseItem(3,"","Пресc","Поднятие корпуса без отрыва ног от пола",tags)));
+        tags.addAll(Arrays.asList("корпус", "пресс"));
+        adapter.addItems(Arrays.asList(new ExerciseItem(3, "https://pic.sport.ua/images/news/0/11/162/orig_472501.jpg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
+                new ExerciseItem(3, "https://media.self.com/photos/5a305b43e1ef6d3e6b8801bf/3:4/w_2465,h_3287,c_limit/2_7self.jpg", "Продольное скручивание", "Выполняйте упражнение, как показано на картинке", tags),
+                new ExerciseItem(3, "https://img.etimg.com/thumb/msid-74747010,width-643,imgsize-803576,resizemode-4/in-the-time-of-coronavirus-when-its-advisable-to-maintain-at-least-three-feet-of-distance-from-anyone-a-home-gym-offers-the-safest-workout-.jpg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
+                new ExerciseItem(3, "https://www.sciencealert.com/images/2019-12/processed/old_man_balancing_on_hands_yoga_getty_1024.jpg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
+                new ExerciseItem(3, "https://www.telegraph.co.uk/content/dam/health-fitness/2019/12/09/TELEMMGLPICT000216989536_trans%2B%2BpVlberWd9EgFPZtcLiMQfyf2A9a6I9YchsjMeADBa08.jpeg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags)));
     }
 }
