@@ -6,28 +6,29 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.Objects;
 
 @Entity (tableName = "news")
 public class NewsItem {
 
+    //Хранятся в базе
     @PrimaryKey
     private int id;
-
     @NonNull
     private String title;
-
     @ColumnInfo (name = "text_news")
     @NonNull
     private String text;
 
+    //Игнорируются
     @Ignore
     private String imgUrl;
-
     @Ignore
     private boolean expanded;
 
-    public NewsItem(int id, String title, String text) {
+    public NewsItem(int id, @NotNull String title, @NotNull String text) {
         this.id = id;
         this.title = title;
         this.text = text;
