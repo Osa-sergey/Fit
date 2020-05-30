@@ -45,7 +45,7 @@
     <string name="icon">icon</string>
     <string name="header_edit">Редактировать</string>
     <string name="helpText">Популярные вопросы</string>
-    <string name="exercise_complexity">Сложность</string>
+    <string name="exercise_complexity">Сложность:</string>
     <string name="trainer_reviews">Отзывы:</string>
 
     <string name="profile_weight">Вес</string>

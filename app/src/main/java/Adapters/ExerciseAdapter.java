@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.material.chip.Chip;
 import com.serg.fit.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +55,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         onItemClickListener = itemClickListener;
     }
+
     public ExerciseItem getItem(int pos){
         return exerciseItemList.get(pos);
     }
@@ -62,7 +64,8 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
 
         private ImageView img;
         private TextView title;
-//        private List<ImageView> stars;
+        private RatingBar stars;
+        private List<Chip> tags;
 
         public ExerciseHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,20 +73,20 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
             itemView.setOnClickListener(onItemClickListener);
             img = (ImageView) itemView.findViewById(R.id.exercise_image);
             title = (TextView) itemView.findViewById(R.id.exercise_title);
+            stars = (RatingBar) itemView.findViewById(R.id.stars);
 
-            ImageView star1,star2,star3,star4,star5;
-            star1 = (ImageView) itemView.findViewById(R.id.star1);
-            star2 = (ImageView) itemView.findViewById(R.id.star2);
-            star3 = (ImageView) itemView.findViewById(R.id.star3);
-            star4 = (ImageView) itemView.findViewById(R.id.star4);
-            star5 = (ImageView) itemView.findViewById(R.id.star5);
-//            stars = new ArrayList<>();
-//            stars.addAll(Arrays.asList(star1,star2,star3,star4,star5));
+            //теги
+            tags = new ArrayList<>();
+            Chip chip1, chip2, chip3, chip4;
+            chip1 = (Chip) itemView.findViewById(R.id.chip1);
+            chip2 = (Chip) itemView.findViewById(R.id.chip2);
+            chip3 = (Chip) itemView.findViewById(R.id.chip3);
+            chip4 = (Chip) itemView.findViewById(R.id.chip4);
+            tags.addAll(Arrays.asList(chip1, chip2, chip3, chip4));
         }
 
         public void bind(ExerciseItem exerciseItem) {
-            //TODO загрузить картинку
-
+            //Загружаем картинку
             RequestOptions requestOptions = new RequestOptions();
             requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(8));
             Glide.with(itemView.getContext())
@@ -91,11 +94,14 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
                     .apply(requestOptions)
                     .into(img);
 
-//            Picasso.with().load(exerciseItem.getSrc()).transform(new CircleTransform()).into(imageView);
             title.setText(exerciseItem.getTitle());
-            for (int i = 0; i <5 ; i++) {
-//                if (i<exerciseItem.getStarsCount()) stars.get(i).setImageResource(R.drawable.ic_star_accent);
-//                else stars.get(i).setImageResource(R.drawable.ic_star);
+            stars.setRating(exerciseItem.getStarsCount());
+
+            for (int i = 0; i < 4; i++) {
+                if (i < exerciseItem.getTags().size()) {
+                    tags.get(i).setVisibility(View.VISIBLE);
+                    tags.get(i).setText(exerciseItem.getTags().get(i));
+                } else tags.get(i).setVisibility(View.GONE);
             }
         }
     }

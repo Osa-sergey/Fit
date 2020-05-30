@@ -45,7 +45,7 @@
     <string name="icon">icon</string>
     <string name="header_edit">Edit</string>
     <string name="helpText">Popular questions</string>
-    <string name="exercise_complexity">Complexity</string>
+    <string name="exercise_complexity">Complexity:</string>
     <string name="trainer_reviews">Reviews:</string>
 
     <string name="profile_weight">Weight</string>

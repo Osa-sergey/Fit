@@ -8,16 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.google.android.material.button.MaterialButton;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.chip.Chip;
 import com.serg.fit.R;
 
@@ -32,7 +37,6 @@ import Utils.LinearItemDecoration;
 public class ExercisesFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private StaggeredGridLayoutManager manager;
     private ExerciseAdapter adapter;
     private Dialog dialogExercise;
     private View.OnClickListener onItemClickListener = new View.OnClickListener() {
@@ -46,25 +50,24 @@ public class ExercisesFragment extends Fragment {
             dialogExercise.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialogExercise.setContentView(R.layout.dialog_exercise);
             dialogExercise.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            //TODO загрузить картинку
+
+            ImageView exerciseImage = (ImageView) dialogExercise.findViewById(R.id.exercise_image);
             TextView title = (TextView) dialogExercise.findViewById(R.id.exercise_title);
             TextView mainText = (TextView) dialogExercise.findViewById(R.id.main_text);
-            ImageView star1, star2, star3, star4, star5;
-            star1 = (ImageView) dialogExercise.findViewById(R.id.star1);
-            star2 = (ImageView) dialogExercise.findViewById(R.id.star2);
-            star3 = (ImageView) dialogExercise.findViewById(R.id.star3);
-            star4 = (ImageView) dialogExercise.findViewById(R.id.star4);
-            star5 = (ImageView) dialogExercise.findViewById(R.id.star5);
-            List<ImageView> stars = new ArrayList<>();
-            stars.addAll(Arrays.asList(star1, star2, star3, star4, star5));
-            MaterialButton btn = (MaterialButton) dialogExercise.findViewById(R.id.btn_submit);
+            ImageButton btn = (ImageButton) dialogExercise.findViewById(R.id.btn_submit);
+            RatingBar stars = (RatingBar) dialogExercise.findViewById(R.id.stars);
+
+            RequestOptions options = new RequestOptions();
+            options = options.transforms(new CenterCrop(), new RoundedCorners(8));
+            Glide.with(view.getContext())
+                    .load(item.getSrc())
+                    .apply(options)
+                    .into(exerciseImage);
+
+            stars.setRating(item.getStarsCount());
             title.setText(item.getTitle());
             mainText.setText(item.getDescription());
-            for (int i = 0; i < 5; i++) {
-                if (i < item.getStarsCount())
-                    stars.get(i).setImageResource(R.drawable.ic_star_accent);
-                else stars.get(i).setImageResource(R.drawable.ic_star);
-            }
+
             List<Chip> tags = new ArrayList<>();
             Chip chip1, chip2, chip3, chip4;
             chip1 = (Chip) dialogExercise.findViewById(R.id.chip1);
@@ -97,8 +100,7 @@ public class ExercisesFragment extends Fragment {
         adapter = new ExerciseAdapter();
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(onItemClickListener);
-        manager = new StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(manager);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.addItemDecoration(new LinearItemDecoration(10));
         loadItems();
         return view;
@@ -106,11 +108,12 @@ public class ExercisesFragment extends Fragment {
 
     private void loadItems() {
         List<String> tags = new ArrayList<>();
-        tags.addAll(Arrays.asList("корпус", "пресс"));
-        adapter.addItems(Arrays.asList(new ExerciseItem(3, "https://pic.sport.ua/images/news/0/11/162/orig_472501.jpg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
-                new ExerciseItem(3, "https://media.self.com/photos/5a305b43e1ef6d3e6b8801bf/3:4/w_2465,h_3287,c_limit/2_7self.jpg", "Продольное скручивание", "Выполняйте упражнение, как показано на картинке", tags),
+        tags.addAll(Arrays.asList("корпус", "Руки", "Ноги", "Шея"));
+        adapter.addItems(Arrays.asList(new ExerciseItem(3, "https://pic.sport.ua/images/news/0/11/162/orig_472501.jpg", "Пресc текст заполнитель для проверки отступов и внешнего вида йй", "Поднятие корпуса без отрыва ног от пола ьиьаильаилаиадлиаиьадильаидаьиьадлиьаиьадиьаиьладьиьаильаьлиальидаьлиьла jknbbfnbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaashvbhdbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbjbhhhhhhhhhhhhhhhhhhhhhhh", tags),
                 new ExerciseItem(3, "https://img.etimg.com/thumb/msid-74747010,width-643,imgsize-803576,resizemode-4/in-the-time-of-coronavirus-when-its-advisable-to-maintain-at-least-three-feet-of-distance-from-anyone-a-home-gym-offers-the-safest-workout-.jpg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
                 new ExerciseItem(3, "https://www.sciencealert.com/images/2019-12/processed/old_man_balancing_on_hands_yoga_getty_1024.jpg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
-                new ExerciseItem(3, "https://www.telegraph.co.uk/content/dam/health-fitness/2019/12/09/TELEMMGLPICT000216989536_trans%2B%2BpVlberWd9EgFPZtcLiMQfyf2A9a6I9YchsjMeADBa08.jpeg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags)));
+                new ExerciseItem(3, "https://www.telegraph.co.uk/content/dam/health-fitness/2019/12/09/TELEMMGLPICT000216989536_trans%2B%2BpVlberWd9EgFPZtcLiMQfyf2A9a6I9YchsjMeADBa08.jpeg", "Пресc", "Поднятие корпуса без отрыва ног от пола", tags),
+                new ExerciseItem(3, "https://media.self.com/photos/5a305b43e1ef6d3e6b8801bf/3:4/w_2465,h_3287,c_limit/2_7self.jpg", "Продольное скручивание", "Выполняйте упражнение, как показано на картинке", tags),
+                new ExerciseItem(3, "https://media.self.com/photos/5a305b43e1ef6d3e6b8801bf/3:4/w_2465,h_3287,c_limit/2_7self.jpg", "Продольное скручивание", "Выполняйте упражнение, как показано на картинке", tags)));
     }
 }

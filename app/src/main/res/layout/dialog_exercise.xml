@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="330dp"
-    android:layout_height="442dp"
+    android:layout_height="505dp"
     app:cardCornerRadius="15dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,10 +13,11 @@
         <ImageView
             android:id="@+id/exercise_image"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="36dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="42dp"
+            android:layout_marginEnd="13dp"
+            app:layout_constraintDimensionRatio="w,15:10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,129 +47,102 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/exercise_title" />
 
-        <ImageView
-            android:id="@+id/star1"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:src="@drawable/ic_star"
+        <RatingBar
+            android:id="@+id/stars"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/exercise_complexity"
             app:layout_constraintStart_toEndOf="@+id/exercise_complexity"
             app:layout_constraintTop_toTopOf="@+id/exercise_complexity" />
 
-        <ImageView
-            android:id="@+id/star2"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star1"
-            app:layout_constraintStart_toEndOf="@+id/star1"
-            app:layout_constraintTop_toTopOf="@+id/star1" />
 
-        <ImageView
-            android:id="@+id/star3"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star2"
-            app:layout_constraintStart_toEndOf="@+id/star2"
-            app:layout_constraintTop_toTopOf="@+id/star2" />
-
-        <ImageView
-            android:id="@+id/star4"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star3"
-            app:layout_constraintStart_toEndOf="@+id/star3"
-            app:layout_constraintTop_toTopOf="@+id/star3" />
-
-        <ImageView
-            android:id="@+id/star5"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/ic_star"
-            app:layout_constraintBottom_toBottomOf="@+id/star4"
-            app:layout_constraintStart_toEndOf="@+id/star4"
-            app:layout_constraintTop_toTopOf="@+id/star4" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false"
-            app:layout_constraintBottom_toBottomOf="@+id/star4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/star5"
-            app:layout_constraintTop_toTopOf="@+id/star5" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chip1" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/chip2"
-            app:layout_constraintStart_toEndOf="@+id/chip2"
-            app:layout_constraintTop_toTopOf="@+id/chip2" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:focusable="false"
-            android:layout_marginStart="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/chip3"
-            app:layout_constraintStart_toEndOf="@+id/chip3"
-            app:layout_constraintTop_toTopOf="@+id/chip3" />
-
-        <TextView
-            android:id="@+id/main_text"
+        <HorizontalScrollView
+            android:id="@+id/tags"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="37dp"
+            android:layout_marginStart="13dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="37dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="top"
-            app:layout_constraintBottom_toTopOf="@+id/btn_submit"
+            android:layout_marginEnd="13dp"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/exercise_complexity">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:clickable="false"
+                    android:focusable="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:clickable="false"
+                    android:focusable="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:clickable="false"
+                    android:focusable="false" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:clickable="false"
+                    android:focusable="false" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chip2"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tags"
+            app:layout_constraintVertical_bias="0.0">
 
-        <com.google.android.material.button.MaterialButton
+            <TextView
+                android:id="@+id/main_text"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="top" />
+
+        </ScrollView>
+
+        <ImageButton
             android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:layout_marginBottom="16dp"
-            android:text="@android:string/ok"
-            app:backgroundTint="@color/buttonTint"
-            app:cornerRadius="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_exit"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
