@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="5dp"
-    android:layout_marginStart="15dp"
-    android:layout_marginEnd="15dp">
+    app:cardCornerRadius="5dp">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -15,23 +14,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                app:layout_constraintDimensionRatio="w,15:8"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic[1]" />
+
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="18dp"
                 android:fontFamily="sans-serif"
-                android:text="Название новости"
+                android:maxWidth="350dp"
+                android:maxLength="100"
                 android:textColor="@color/textBlack"
                 android:textSize="19sp"
-                android:layout_marginTop="18dp"
-                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/options"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/image"
+                tools:text="@tools:sample/lorem/random" />
 
             <ImageButton
                 android:id="@+id/options"
-                android:layout_width="20dp"
-                android:layout_height="30dp"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="16dp"
                 android:background="@null"
@@ -47,43 +59,34 @@
                 android:id="@+id/text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="13dp"
+                android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:maxLines="4"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="16dp"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
                 android:textColor="#3C3C3C"
                 android:textSize="16sp"
-                app:layout_constraintTop_toBottomOf="@+id/title" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                tools:text="@tools:sample/lorem/random" />
 
             <TextView
                 android:id="@+id/read_more"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true"
                 android:text="@string/read_more"
                 android:textColor="#3C3C3C"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:clickable="true"
-                android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/text"
                 app:layout_constraintTop_toBottomOf="@+id/text"
                 app:layout_constraintVertical_bias="0.0" />
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="22dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/read_more" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

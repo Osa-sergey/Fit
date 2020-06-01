@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.material.chip.Chip;
 import com.serg.fit.R;
@@ -88,7 +87,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.Exerci
         public void bind(ExerciseItem exerciseItem) {
             //Загружаем картинку
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(8));
+            requestOptions = requestOptions.transform(new CenterCrop());
             Glide.with(itemView.getContext())
                     .load(exerciseItem.getSrc())
                     .apply(requestOptions)

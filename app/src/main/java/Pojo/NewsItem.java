@@ -33,7 +33,17 @@ public class NewsItem {
         this.title = title;
         this.text = text;
         this.expanded = false;
+        //TODO вписать название сайта
         imgUrl = "news_photo_prev_"+id;
+    }
+
+    //TODO удалить тестовый конструктор
+    public NewsItem(int id, @NotNull String title, @NotNull String text, String imgUrl) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.expanded = false;
+        this.imgUrl = imgUrl;
     }
 
     public int getId() {

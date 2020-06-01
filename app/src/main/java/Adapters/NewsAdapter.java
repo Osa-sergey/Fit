@@ -21,6 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.AutoTransition;
 import androidx.transition.TransitionManager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.serg.fit.R;
 
 import java.util.ArrayList;
@@ -80,7 +83,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
             image = (ImageView) itemView.findViewById(R.id.image);
         }
 
-        public void bind(NewsItem newsItem, final int position, final NewsHolder holder) {
+        public void bind(final NewsItem newsItem, final int position, final NewsHolder holder) {
             title.setText(newsItem.getTitle());
             text.setText(newsItem.getText());
 
@@ -106,13 +109,20 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
             options.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showPopupMenu(holder.options);
+                    showPopupMenu(holder.options,newsItem.getId());
                 }
             });
-            //TODO загрузить картинку
+
+            //загружаем картинку
+            RequestOptions options = new RequestOptions();
+            options = options.transform(new CenterCrop());
+            Glide.with(itemView.getContext())
+                    .load(newsItem.getImgUrl())
+                    .apply(options)
+                    .into(image);
         }
 
-        private void showPopupMenu(final View view) {
+        private void showPopupMenu(final View view, final int id) {
             PopupMenu menu = new PopupMenu(view.getContext(),view);
             MenuInflater inflater = menu.getMenuInflater();
             inflater.inflate(R.menu.news_options_menu,menu.getMenu());
@@ -121,8 +131,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                 public boolean onMenuItemClick(MenuItem item) {
                     if (item.getItemId() == R.id.copy) {
                         ClipboardManager clipboard = (ClipboardManager) activity.getSystemService(Context.CLIPBOARD_SERVICE);
-                        //TODO разобраться как копировать новость
-                        ClipData clip = ClipData.newPlainText("save","my text");
+                        //TODO добавить название сайта в начале адреса и контроллер
+                        ClipData clip = ClipData.newPlainText("save","news_link_" + id);
                         clipboard.setPrimaryClip(clip);
                         return true;
                     }
