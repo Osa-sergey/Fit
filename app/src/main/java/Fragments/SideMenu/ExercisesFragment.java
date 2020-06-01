@@ -58,7 +58,7 @@ public class ExercisesFragment extends Fragment {
             RatingBar stars = (RatingBar) dialogExercise.findViewById(R.id.stars);
 
             RequestOptions options = new RequestOptions();
-            options = options.transforms(new CenterCrop(), new RoundedCorners(8));
+            options = options.transform(new CenterCrop(), new RoundedCorners(8));
             Glide.with(view.getContext())
                     .load(item.getSrc())
                     .apply(options)

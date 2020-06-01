@@ -7,14 +7,14 @@
     app:cardCornerRadius="15dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
         android:text="@string/hint_occupied"
         android:textColor="@color/textBlack"
-        android:gravity="center_horizontal"
-        android:textSize="16sp"
-        android:fontFamily="sans-serif"
-        android:layout_marginTop="25dp"/>
+        android:textSize="16sp" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_submit"

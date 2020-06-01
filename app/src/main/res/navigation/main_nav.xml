@@ -54,7 +54,12 @@
         android:id="@+id/side_contacts"
         android:name="Fragments.SideMenu.ContactsFragment"
         tools:layout="@layout/fragment_contacts"
-        android:label="@string/fragment_contacts"/>
+        android:label="@string/fragment_contacts">
+        <action
+            android:id="@+id/action_side_contacts_to_fragmentAbout"
+            app:destination="@id/fragmentAbout"
+            app:popUpTo="@id/side_contacts" />
+    </fragment>
 
     <fragment
         android:id="@+id/side_settings"
@@ -102,4 +107,9 @@
         android:name="Fragments.SideMenu.ForTrainers.WriteReviewFragment"
         android:label="WriteReviewFragment"
         tools:layout="@layout/fragment_write_review"/>
+    <fragment
+        android:id="@+id/fragmentAbout"
+        android:name="Fragments.SideMenu.FragmentAbout"
+        android:label="FragmentAbout"
+        tools:layout="@layout/fragment_about_application"/>
 </navigation>

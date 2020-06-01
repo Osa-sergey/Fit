@@ -145,7 +145,10 @@
     <string name="male">Мужской</string>
     <string name="female">Женский</string>
     <string name="writeMessage">Написать сообщение…</string>
-
+    <string name="about_application"><u>О приложении</u></string>
+    <string name="version">Версия 0.1.0</string>
+    <string name="privacy_policy"><u>Политика конфиденциальности</u></string>
+    <string name="terms_of_use"><u>пользовательское соглашение</u></string>
     <string-array name="power_type">
         <item>Не выбрано</item>
         <item>Эктоморф</item>

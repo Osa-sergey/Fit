@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ public class ContactsFragment extends Fragment {
 
     TextInputEditText title, text;
     MaterialButton submit;
+    TextView aboutApp;
     Dialog dialog;
 
     @Nullable
@@ -31,6 +33,7 @@ public class ContactsFragment extends Fragment {
 
         title = (TextInputEditText) view.findViewById(R.id.contacts_them);
         text = (TextInputEditText) view.findViewById(R.id.contacts_text);
+        aboutApp = (TextView) view.findViewById(R.id.about_app);
 
         submit = (MaterialButton) view.findViewById(R.id.send);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +54,13 @@ public class ContactsFragment extends Fragment {
                  }
              });
              dialog.show();
+            }
+        });
+
+        aboutApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_side_contacts_to_fragmentAbout);
             }
         });
         return view;
